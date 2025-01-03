@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_colegios">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.fedegst90.gestionclasesapp.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:id="@+id/navigation_colegios"
+        android:name="com.fedegst90.gestionclasesapp.ui.colegios.ColegiosFragment"
+        android:label="@string/title_colegios"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.fedegst90.gestionclasesapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:id="@+id/navigation_cursos"
+        android:name="com.fedegst90.gestionclasesapp.ui.cursos.CursosFragment"
+        android:label="@string/title_cursos"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.fedegst90.gestionclasesapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:id="@+id/navigation_estudiantes"
+        android:name="com.fedegst90.gestionclasesapp.ui.estudiantes.EstudiantesFragment"
+        android:label="@string/title_estudiantes"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

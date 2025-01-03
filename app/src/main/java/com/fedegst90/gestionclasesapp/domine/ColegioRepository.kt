@@ -16,3 +16,4 @@ interface ColegioRepository {
 
     suspend fun getColegioByName(nombre: String): ColegioEntity?
 }
+
