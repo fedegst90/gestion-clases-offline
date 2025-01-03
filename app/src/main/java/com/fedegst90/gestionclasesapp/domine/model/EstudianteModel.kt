@@ -6,6 +6,7 @@ data class EstudianteModel(
     val apellido: String,
     val nombre: String,
     val nroDoc: Int,
+    val sexo: Char,
     val legajo: Int,
     val colegioId: Int,
     val curso: Int,

@@ -3,4 +3,8 @@
     <string name="title_cursos">Cursos</string>
     <string name="title_colegios">Colegios</string>
     <string name="title_estudiantes">Estudiantes</string>
+    <string name="btn_agregar_colegio">Agregar Colegio</string>
+    <string name="btn_agregar_curso">Agregar Cursos</string>
+    <string name="btn_agregar_estudiante">Agregar Estudiantes</string>
+
 </resources>
