@@ -10,5 +10,4 @@ data class ColegioEntity(
     @ColumnInfo("id") val id: Int = 0,
     @ColumnInfo(name = "nombre") val nombre: String,
     @ColumnInfo("nro") val nro: Int,
-    @ColumnInfo(name = "colegio") val colgio: String,
 )

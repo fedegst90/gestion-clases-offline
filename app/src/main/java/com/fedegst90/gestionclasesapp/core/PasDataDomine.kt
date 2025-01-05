@@ -10,8 +10,7 @@ fun ColegioEntity.toModel(): ColegioModel {
     return ColegioModel(
         id = this.id,
         nombre = this.nombre,
-        nro = this.nro,
-        colegio = this.colgio
+        nro = this.nro
     )
 }
 
@@ -20,7 +19,6 @@ fun ColegioModel.toEntity(): ColegioEntity {
         id = this.id,
         nombre = this.nombre,
         nro = this.nro,
-        colgio = this.colegio
     )
 }
 

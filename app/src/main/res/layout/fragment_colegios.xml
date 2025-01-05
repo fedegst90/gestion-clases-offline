@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,27 +10,46 @@
     tools:context=".ui.colegios.ColegiosFragment">
 
     <TextView
-        android:id="@+id/schoolTitle"
+        android:id="@+id/tvColegioTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginBottom="8dp"
-        android:text="Select School"
+        android:text="Seccion colegios"
+        android:textStyle="bold|italic"
+        android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="20sp" />
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:iconifiedByDefault="false"
+        android:queryHint="Buscar colegio..."
+        app:queryBackground="@color/white" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvColegios"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:background="@color/white" />
+
+
+    <include
+        android:id="@+id/includeItemColegio"
+        layout="@layout/item_colegio" />
 
     <Button
         android:id="@+id/btnAddColegio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primario"
+        android:backgroundTint="@color/segundo"
         android:text="@string/btn_agregar_colegio"
+        android:textSize="20sp"
+        android:textStyle="italic"
         android:textColor="@color/black" />
 
 </LinearLayout>
