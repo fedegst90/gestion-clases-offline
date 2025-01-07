@@ -7,4 +7,11 @@
     <string name="btn_agregar_curso">Agregar Cursos</string>
     <string name="btn_agregar_estudiante">Agregar Estudiantes</string>
 
+    <!-- dialogos create -->
+    <string name="title_dialogo_create">Titulo</string>
+    <string name="name_colegio">Nombre del Colegio</string>
+    <string name="nro_colegio">N° Colegio</string>
+
+
+
 </resources>

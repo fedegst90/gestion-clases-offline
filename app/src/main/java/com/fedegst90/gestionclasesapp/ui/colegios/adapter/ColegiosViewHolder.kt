@@ -8,7 +8,8 @@ import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 class ColegiosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemColegioBinding.bind(view)
 
-    fun parse(colegioItem:ColegioModel){
+    fun parse(colegioItem: ColegioModel) {
+        binding.tvTitle.visibility = View.GONE
         binding.tvColegios.text = colegioItem.nombre
     }
 }

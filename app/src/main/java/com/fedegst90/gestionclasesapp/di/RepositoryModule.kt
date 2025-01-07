@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object provideRepository {
+object RepositoryModule {
     @Provides
     @Singleton
     fun provideEstudianteRepository(
@@ -34,5 +34,4 @@ object provideRepository {
             colegioDao
         )
     }
-
 }

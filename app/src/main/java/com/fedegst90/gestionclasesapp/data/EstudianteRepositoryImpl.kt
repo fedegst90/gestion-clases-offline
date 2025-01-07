@@ -5,7 +5,9 @@ import com.fedegst90.gestionclasesapp.data.entity.EstudianteEntity
 import com.fedegst90.gestionclasesapp.domine.EstudianteRepository
 import javax.inject.Inject
 
-class EstudianteRepositoryImpl @Inject constructor(private val estudianteDao: EstudianteDao) :
+class EstudianteRepositoryImpl @Inject constructor(
+    private val estudianteDao: EstudianteDao
+) :
     EstudianteRepository {
 
     override suspend fun insertStudent(student: EstudianteEntity) {
