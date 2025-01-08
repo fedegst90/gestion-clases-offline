@@ -16,6 +16,7 @@ class ColegiosAdapter(
         val listdiff = GenericDiff(colegiosList, newList, idSelector = { it.id })
         val result = DiffUtil.calculateDiff(listdiff)
         colegiosList = newList
+
         result.dispatchUpdatesTo(this)
     }
 

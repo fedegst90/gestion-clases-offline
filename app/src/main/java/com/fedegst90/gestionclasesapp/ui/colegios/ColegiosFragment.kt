@@ -57,19 +57,22 @@ class ColegiosFragment : Fragment() {
         viewModel.getAllColegios()
         setupListener()
         setupObserver()
-        setupSearchView()
-        setupPopup()
+       // setupSearchView()
+        //setupPopup()
     }
 
     private fun setupObserver() {
         viewModel.colegios.observe(viewLifecycleOwner) {
-            if (it.isEmpty()) {
+           /* if (it.isEmpty()) {
                 adapterColegio.updateList(listOf())
             } else {
+
+            */
                 Log.d("ColegiosFragment", "Colegios recibidos: ${it}")
                 listColegioModel=it
                 adapterColegio.updateList(it)
-            }
+
+            //}
         }
     }
 
