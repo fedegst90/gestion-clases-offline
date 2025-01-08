@@ -8,12 +8,11 @@ import androidx.room.PrimaryKey
 data class EstudianteEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo("id") val id: Int = 0,
-    @ColumnInfo(name = "apellido") val apellido: String,
-    @ColumnInfo(name = "nombre") val nombre: String,
+    @ColumnInfo("apellido") val apellido: String,
+    @ColumnInfo("nombre") val nombre: String,
     @ColumnInfo("nro_doc") val nroDoc: Int,
     @ColumnInfo("sexo") val sexo: Char,
-    @ColumnInfo(name = "legajo") val legajo: Int,
-    @ColumnInfo(name = "colegio_id") val colegio: Int,
-    @ColumnInfo(name = "curso") val curso: Int,
-    @ColumnInfo(name = "division") val division: String,
+    @ColumnInfo("legajo") val legajo: Int,
+    @ColumnInfo("colegio_id") val colegio: Int,
+    @ColumnInfo("curso_id") val cursoId: Int
 )

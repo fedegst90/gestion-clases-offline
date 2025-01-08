@@ -4,13 +4,11 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "colegio_table")
-data class ColegioEntity(
+@Entity(tableName = "cursos_table")
+data class CursosEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo("id") val id: Int = 0,
-    @ColumnInfo("nombre") val nombre: String,
-    @ColumnInfo("nro") val nro: Int
+    @ColumnInfo("año") val year: String,
+    @ColumnInfo("division") val division: String,
+    @ColumnInfo("escuela_id") val escuelaId: Int
 )
-
-
-

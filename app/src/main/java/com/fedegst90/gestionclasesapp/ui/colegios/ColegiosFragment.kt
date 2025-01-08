@@ -3,7 +3,6 @@ package com.fedegst90.gestionclasesapp.ui.colegios
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fedegst90.gestionclasesapp.R
+
 import com.fedegst90.gestionclasesapp.core.showToast
 import com.fedegst90.gestionclasesapp.databinding.FragmentColegiosBinding
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
@@ -66,10 +66,14 @@ class ColegiosFragment : Fragment() {
            /* if (it.isEmpty()) {
                 adapterColegio.updateList(listOf())
             } else {
+<<<<<<< HEAD
 
             */
                 Log.d("ColegiosFragment", "Colegios recibidos: ${it}")
                 listColegioModel=it
+=======
+                listColegioModel = it
+>>>>>>> origin/IU
                 adapterColegio.updateList(it)
 
             //}
@@ -78,7 +82,7 @@ class ColegiosFragment : Fragment() {
 
     private fun setupListener() {
         binding.btnAddColegio.setOnClickListener {
-            dialog()
+            dialogNewColegio()
         }
     }
 
@@ -138,7 +142,7 @@ class ColegiosFragment : Fragment() {
         listColegioModel.filter { it.nombre.contains(query, ignoreCase = true) }
 
     @SuppressLint("MissingInflatedId")
-    private fun dialog() {
+    private fun dialogNewColegio() {
         val dialogView =
             LayoutInflater.from(requireContext()).inflate(R.layout.dialog_create, null)
         val dialog = AlertDialog.Builder(requireContext())
@@ -162,8 +166,9 @@ class ColegiosFragment : Fragment() {
                         nro = etNro.text.toString().toInt()
                     )
                 )
-                viewModel.getAllColegios()
+
                 dialog.dismiss()
+                viewModel.getAllColegios()
             } else {
                 context?.showToast("Debe completar todos los campos")
             }

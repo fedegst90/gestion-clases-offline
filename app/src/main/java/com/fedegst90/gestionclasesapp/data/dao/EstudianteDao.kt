@@ -36,6 +36,6 @@ interface EstudianteDao {
     suspend fun getStudentsByColegio(colegioId: Int): List<EstudianteEntity>
 
     // Obtener estudiantes por curso y división
-    @Query("SELECT * FROM estudiante_table WHERE curso = :curso AND division = :division")
-    suspend fun getStudentsByCursoAndDivision(curso: Int, division: String): List<EstudianteEntity>
+    @Query("SELECT * FROM estudiante_table WHERE curso_id = :curso")
+    suspend fun getStudentsByCursoAndDivision(curso: Int): List<EstudianteEntity>
 }

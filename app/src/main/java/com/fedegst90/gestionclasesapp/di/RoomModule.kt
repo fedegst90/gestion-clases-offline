@@ -25,10 +25,13 @@ class RoomModule {
 
     @Singleton
     @Provides
-    fun provideUsuarioDao(db: DataBaseApp) = db.getEstudienteDao()
+    fun provideEstudianteDao(db: DataBaseApp) = db.getEstudienteDao()
 
     @Singleton
     @Provides
-    fun provideUsuarioRecordarDao(db: DataBaseApp) = db.getColegioDao()
+    fun provideColegioDao(db: DataBaseApp) = db.getColegioDao()
+    @Singleton
+    @Provides
+    fun provideCursoDao(db: DataBaseApp) = db.getCursoDao()
 
 }
