@@ -6,12 +6,8 @@ data class EstudianteModel(
     val apellido: String,
     val nombre: String,
     val nroDoc: Int,
-    val sexo: Char,
+    val sexo: String,
     val legajo: Int,
     val colegioId: Int,
     val cursoId: Int,
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/IU
 )

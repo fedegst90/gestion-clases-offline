@@ -33,8 +33,8 @@ class ColegioRepositoryImpl @Inject constructor(private val colegioDao: ColegioD
         return colegioDao.getColegioByName(nombre)
     }
 
-    override suspend fun getColegioConCursos(): List<ColegioConCursos> {
-        return colegioDao.getColegioConCursos()
+    override suspend fun getAllColegioConCursos(): List<ColegioConCursos> {
+        return colegioDao.getAllColegioConCursos()
     }
 
 }

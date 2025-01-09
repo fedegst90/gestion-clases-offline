@@ -17,7 +17,7 @@ interface ColegioRepository {
 
     suspend fun getColegioByName(nombre: String): ColegioEntity?
 
-    suspend fun getColegioConCursos(): List<ColegioConCursos>
+    suspend fun getAllColegioConCursos(): List<ColegioConCursos>
 
 }
 

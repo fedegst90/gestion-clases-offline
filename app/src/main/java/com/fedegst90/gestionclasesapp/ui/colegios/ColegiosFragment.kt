@@ -18,21 +18,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fedegst90.gestionclasesapp.R
-<<<<<<< HEAD
 import com.fedegst90.gestionclasesapp.core.makeViewsInvisible
 import com.fedegst90.gestionclasesapp.core.makeViewsVisible
-import com.fedegst90.gestionclasesapp.core.makeVisible
-
-=======
-import com.fedegst90.gestionclasesapp.core.makeViewsGone
-import com.fedegst90.gestionclasesapp.core.makeViewsVisible
->>>>>>> origin/IU
-
 import com.fedegst90.gestionclasesapp.core.showToast
-import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursosYEstudiantes
 import com.fedegst90.gestionclasesapp.databinding.FragmentColegiosBinding
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
-import com.fedegst90.gestionclasesapp.domine.model.CursoModel
 import com.fedegst90.gestionclasesapp.ui.colegios.adapter.ColegiosAdapter
 import com.fedegst90.gestionclasesapp.ui.cursos.CursosViewModel
 import com.fedegst90.gestionclasesapp.ui.estudiantes.EstudiantesViewModel
@@ -49,7 +40,7 @@ class ColegiosFragment : Fragment() {
     private lateinit var adapterColegio: ColegiosAdapter
     private lateinit var popupAdapter: ArrayAdapter<String>
     private lateinit var listPopupWindow: ListPopupWindow
-    private var listColegioModel: List<ColegioConCursos> = emptyList()
+    private var listColegioModel: List<ColegioConCursosYEstudiantes> = emptyList()
 
 
     override fun onCreateView(
@@ -70,45 +61,28 @@ class ColegiosFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupIU()
         setupListener()
         setupObserver()
         setupSearchView()
         setupPopup()
-
-
     }
 
     private fun setupIU() {
-        viewModelColegios.getColegioConCursos()
-        viewModelCursos.insertCurso(CursoModel(
-            year = "1",
-            division = "1",
-            escuelaId = 1,
-            id = 1
-        ))
+        viewModelColegios.getAllColegiosConCursosConEstudiantes()
         viewModelEstudiantes.getAllEstudiantes()
         viewModelCursos.getAllCursos()
     }
 
     private fun setupObserver() {
-
-        viewModelColegios.colegioConCursos.observe(viewLifecycleOwner) {
+        viewModelColegios.colegioConCursosConEstudiantes.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
                 adapterColegio.updateList(listOf())
-<<<<<<< HEAD
-                makeViewsInvisible(binding.imgLeft,binding.imgRight)
-            } else {
-                binding.rvColegios.makeVisible()
-                makeViewsVisible(binding.imgLeft,binding.imgRight)
-                listColegioModel=it
-=======
-                makeViewsGone(binding.imgLeft, binding.imgRight)
+                makeViewsInvisible(binding.imgLeft, binding.imgRight)
+
             } else {
                 listColegioModel = it
                 makeViewsVisible(binding.imgLeft, binding.imgRight)
->>>>>>> origin/IU
                 adapterColegio.updateList(it)
             }
             binding.includeItemColegio.tvCantidadColegios.text = it.size.toString()
@@ -121,8 +95,6 @@ class ColegiosFragment : Fragment() {
         viewModelEstudiantes.estudiantes.observe(viewLifecycleOwner) {
             binding.includeItemColegio.tvCantidadEstudiantes.text = it.size.toString()
         }
-
-
     }
 
     private fun setupListener() {
@@ -145,14 +117,6 @@ class ColegiosFragment : Fragment() {
         }
     }
 
-    private fun onEstudianteSelected(cursoId: Int) {
-        findNavController().navigate(R.id.action_navigation_colegios_to_navigation_estudiantes)
-    }
-
-    private fun onCursoSelected(colegioId: Int) {
-        findNavController().navigate(R.id.action_navigation_colegios_to_navigation_cursos)
-    }
-
     private fun setupSearchView() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -173,13 +137,9 @@ class ColegiosFragment : Fragment() {
         listPopupWindow.anchorView = binding.searchView
         popupAdapter = ArrayAdapter(
             requireContext(),
-<<<<<<< HEAD
             android.R.layout.simple_list_item_1,
-            listColegioModel.toMutableList().map { it.nombre })
-=======
-            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
             listColegioModel.toMutableList().map { it.colegio.nombre })
->>>>>>> origin/IU
+
         listPopupWindow.setAdapter(popupAdapter)
 
 
@@ -190,7 +150,7 @@ class ColegiosFragment : Fragment() {
         }
     }
 
-    private fun updatePopupAdapter(filterList: List<ColegioConCursos>) {
+    private fun updatePopupAdapter(filterList: List<ColegioConCursosYEstudiantes>) {
         popupAdapter.clear()
         popupAdapter.addAll(filterList.map { it.colegio.nombre })
         if (filterList.isNotEmpty()) {
@@ -200,7 +160,7 @@ class ColegiosFragment : Fragment() {
         }
     }
 
-    private fun filterItems(query: String): List<ColegioConCursos> =
+    private fun filterItems(query: String): List<ColegioConCursosYEstudiantes> =
         listColegioModel.filter { it.colegio.nombre.contains(query, ignoreCase = true) }
 
     @SuppressLint("MissingInflatedId")
@@ -228,13 +188,20 @@ class ColegiosFragment : Fragment() {
                         nro = etNro.text.toString().toInt()
                     )
                 )
-
                 dialog.dismiss()
-                viewModelColegios.getColegioConCursos()
+                setupIU()
             } else {
                 context?.showToast("Debe completar todos los campos")
             }
         }
         dialog.show()
+    }
+
+    private fun onEstudianteSelected(cursoId: Int) {
+        findNavController().navigate(R.id.action_navigation_colegios_to_navigation_estudiantes)
+    }
+
+    private fun onCursoSelected(colegioId: Int) {
+        findNavController().navigate(R.id.action_navigation_colegios_to_navigation_cursos)
     }
 }

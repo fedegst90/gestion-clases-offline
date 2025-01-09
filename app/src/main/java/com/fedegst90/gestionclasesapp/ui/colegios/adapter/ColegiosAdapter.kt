@@ -1,37 +1,25 @@
 package com.fedegst90.gestionclasesapp.ui.colegios.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.fedegst90.gestionclasesapp.R
 import com.fedegst90.gestionclasesapp.core.GenericDiff
-import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
-import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursosYEstudiantes
 
 class ColegiosAdapter(
-    private var colegiosList: List<ColegioConCursos>,
+    private var colegiosList: List<ColegioConCursosYEstudiantes>,
     private val onCursoSelected: (Int) -> Unit,
     private val onEstudianteSelected: (Int) -> Unit
 ) : RecyclerView.Adapter<ColegiosViewHolder>() {
 
-<<<<<<< HEAD
-    fun updateList(newList: List<ColegioModel>) {
+    fun updateList(newList: List<ColegioConCursosYEstudiantes>) {
         if (colegiosList.isEmpty()) {
             this.colegiosList = newList
             notifyDataSetChanged()
         } else {
-            val listdiff = GenericDiff(colegiosList, newList, idSelector = { it.id })
-=======
-    fun updateList(newList: List<ColegioConCursos>) {
-
-        if (colegiosList.isEmpty()){
-            this.colegiosList=newList
-            notifyDataSetChanged()
-        }else {
             val listdiff = GenericDiff(colegiosList, newList, idSelector = { it.colegio.id })
->>>>>>> origin/IU
             val result = DiffUtil.calculateDiff(listdiff)
             colegiosList = newList
             result.dispatchUpdatesTo(this)
@@ -48,6 +36,6 @@ class ColegiosAdapter(
 
     override fun onBindViewHolder(holder: ColegiosViewHolder, position: Int) {
         val item = colegiosList[position]
-        holder.parse(item,onCursoSelected, onEstudianteSelected)
+        holder.parse(item, onCursoSelected, onEstudianteSelected)
     }
 }

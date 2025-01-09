@@ -37,4 +37,8 @@ class CursoRepositoryImpl @Inject constructor(
     override suspend fun getCursoConEstudiantes(cursoId: Int): List<CursoConEstudiantes> {
         return cursosDao.getCursoConEstudiantes(cursoId)
     }
+
+    override suspend fun getAllCursoConEstudiantes(): List<CursoConEstudiantes> {
+        return cursosDao.getAllCursoConEstudiantes()
+    }
 }

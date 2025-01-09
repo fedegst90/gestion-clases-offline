@@ -38,6 +38,6 @@ interface ColegioDao {
 
     @Transaction
     @Query("SELECT * FROM colegio_table")
-    suspend fun getColegioConCursos(): List<ColegioConCursos>
+    suspend fun getAllColegioConCursos(): List<ColegioConCursos>
 
 }

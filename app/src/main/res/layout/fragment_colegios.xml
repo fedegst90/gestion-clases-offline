@@ -41,24 +41,20 @@
         android:id="@+id/imgLeft"
         android:layout_width="35dp"
         android:layout_height="35dp"
+        android:layout_marginEnd="-20dp"
         android:src="@drawable/ic_left"
         android:visibility="invisible"
-        android:layout_marginEnd="-20dp"
+        app:layout_constraintBottom_toBottomOf="@id/rvColegios"
         app:layout_constraintEnd_toStartOf="@id/rvColegios"
-        app:layout_constraintTop_toTopOf="@id/rvColegios"
-        app:layout_constraintBottom_toBottomOf="@id/rvColegios" />
+        app:layout_constraintTop_toTopOf="@id/rvColegios" />
 
     <!-- RecyclerView in the center -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvColegios"
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:layout_height="wrap_content"
-        android:visibility="visible"
-=======
-        android:layout_height="0dp"
         android:layout_marginTop="35dp"
->>>>>>> origin/IU
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchView" />
@@ -68,12 +64,12 @@
         android:id="@+id/imgRight"
         android:layout_width="35dp"
         android:layout_height="35dp"
+        android:layout_marginStart="-20dp"
         android:src="@drawable/ic_right"
         android:visibility="invisible"
-        android:layout_marginStart="-20dp"
+        app:layout_constraintBottom_toBottomOf="@id/rvColegios"
         app:layout_constraintStart_toEndOf="@id/rvColegios"
-        app:layout_constraintTop_toTopOf="@id/rvColegios"
-        app:layout_constraintBottom_toBottomOf="@id/rvColegios" />
+        app:layout_constraintTop_toTopOf="@id/rvColegios" />
 
     <Button
         android:id="@+id/btnAddColegio"
@@ -97,6 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnAddColegio">
+
         <include
             android:id="@+id/includeItemColegio"
             layout="@layout/item_colegio" />

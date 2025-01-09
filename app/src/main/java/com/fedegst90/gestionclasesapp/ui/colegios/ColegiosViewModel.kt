@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursosYEstudiantes
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 import com.fedegst90.gestionclasesapp.domine.usecase.DeleteColegioUseCase
+import com.fedegst90.gestionclasesapp.domine.usecase.GetAllColegioConCursosUseCase
+import com.fedegst90.gestionclasesapp.domine.usecase.GetAllColegiosConCursosConEstudiantesUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetAllColegiosUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetColegioByIdUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetColegioByNameUseCase
-import com.fedegst90.gestionclasesapp.domine.usecase.GetColegioConCursosUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.InsertColegioUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.UpdateColegioUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,9 +29,26 @@ class ColegiosViewModel @Inject constructor(
     private val getAllColegiosUseCase: GetAllColegiosUseCase,
     private val getColegioByIdUseCase: GetColegioByIdUseCase,
     private val getColegioByNameUseCase: GetColegioByNameUseCase,
-    private val getColegioConCursosUseCase: GetColegioConCursosUseCase
+    private val getAllColegioConCursosUseCase: GetAllColegioConCursosUseCase,
+    private val getAllColegiosConCursosConEstudiantesUseCase: GetAllColegiosConCursosConEstudiantesUseCase
 
-    ) : ViewModel() {
+) : ViewModel() {
+
+
+    private val _colegioConCursosConEstudiantes =
+        MutableLiveData<List<ColegioConCursosYEstudiantes>>()
+    val colegioConCursosConEstudiantes: LiveData<List<ColegioConCursosYEstudiantes>> get() = _colegioConCursosConEstudiantes
+
+    // Obtener colegio con cursos
+    fun getAllColegiosConCursosConEstudiantes() {
+        viewModelScope.launch {
+            val result = withContext(dispatcherIO) {
+                getAllColegiosConCursosConEstudiantesUseCase()
+            }
+            _colegioConCursosConEstudiantes.postValue(result)
+        }
+    }
+
 
     private val dispatcherIO = Dispatchers.IO
 
@@ -44,10 +63,10 @@ class ColegiosViewModel @Inject constructor(
     val colegioConCursos: LiveData<List<ColegioConCursos>> get() = _colegioConCursos
 
     // Obtener colegio con cursos
-    fun getColegioConCursos() {
+    fun getAllColegioConCursos() {
         viewModelScope.launch {
             val result = withContext(dispatcherIO) {
-                getColegioConCursosUseCase()
+                getAllColegioConCursosUseCase()
             }
             _colegioConCursos.postValue(result)
         }

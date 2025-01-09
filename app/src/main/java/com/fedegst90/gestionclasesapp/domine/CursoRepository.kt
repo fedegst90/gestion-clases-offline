@@ -1,6 +1,5 @@
 package com.fedegst90.gestionclasesapp.domine
 
-import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
 import com.fedegst90.gestionclasesapp.data.database.entity.CursoConEstudiantes
 import com.fedegst90.gestionclasesapp.data.database.entity.CursosEntity
 
@@ -19,4 +18,6 @@ interface CursoRepository {
     suspend fun deleteAllCursos()
 
     suspend fun getCursoConEstudiantes(cursoId: Int): List<CursoConEstudiantes>
+
+    suspend fun getAllCursoConEstudiantes(): List<CursoConEstudiantes>
 }

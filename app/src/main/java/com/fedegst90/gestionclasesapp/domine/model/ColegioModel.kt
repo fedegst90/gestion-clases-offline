@@ -6,10 +6,4 @@ data class ColegioModel(
     val nro: Int,
 )
 
-data class ColegioConCursosModel(
-    val colegio: ColegioModel,
-    val cursos: List<CursoModel>
-)
-
-
 

@@ -34,12 +34,7 @@ fun EstudianteEntity.toModel(): EstudianteModel {
         legajo = this.legajo,
         colegioId = this.colegioId,
         cursoId = this.cursoId,
-<<<<<<< HEAD
         sexo = sexo
-=======
-        sexo = sexo,
-
->>>>>>> origin/IU
     )
 }
 
@@ -52,9 +47,6 @@ fun EstudianteModel.toEntity(): EstudianteEntity {
         legajo = this.legajo,
         colegioId = this.colegioId,
         cursoId = this.cursoId,
-<<<<<<< HEAD
-        sexo = sexo
-=======
         sexo = sexo,
     )
 }
@@ -65,7 +57,7 @@ fun CursosEntity.toModel(): CursoModel {
         id = this.id,
         year = this.year,
         division = this.division,
-        escuelaId = this.escuelaId
+        colegioId = this.colegioId
     )
 }
 
@@ -74,7 +66,6 @@ fun CursoModel.toEntity(): CursosEntity {
         id = this.id,
         year = this.year,
         division = this.division,
-        escuelaId = this.escuelaId
->>>>>>> origin/IU
+        colegioId = this.colegioId
     )
 }

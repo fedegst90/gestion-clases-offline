@@ -11,7 +11,7 @@ data class EstudianteEntity(
     @ColumnInfo("apellido") val apellido: String,
     @ColumnInfo("nombre") val nombre: String,
     @ColumnInfo("nro_doc") val nroDoc: Int,
-    @ColumnInfo("sexo") val sexo: Char,
+    @ColumnInfo("sexo") val sexo: String,
     @ColumnInfo("legajo") val legajo: Int,
     @ColumnInfo("colegio_id") val colegioId: Int,
     @ColumnInfo("curso_id") val cursoId: Int
