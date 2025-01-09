@@ -5,12 +5,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fedegst90.gestionclasesapp.core.makeGone
 import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursosYEstudiantes
 import com.fedegst90.gestionclasesapp.databinding.ItemColegioBinding
+import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
 
 class ColegiosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemColegioBinding.bind(view)
 
     fun parse(
-        colegioItem: ColegioConCursosYEstudiantes,
+        colegioItem: ColegioConCursosYEstudiantesModel,
         onCursoSelected: (Int) -> Unit,
         onEstudianteSelected: (Int) -> Unit
     ) {

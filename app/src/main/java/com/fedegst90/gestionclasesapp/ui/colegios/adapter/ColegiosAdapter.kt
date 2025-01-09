@@ -6,15 +6,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.fedegst90.gestionclasesapp.R
 import com.fedegst90.gestionclasesapp.core.GenericDiff
-import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursosYEstudiantes
+import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
 
 class ColegiosAdapter(
-    private var colegiosList: List<ColegioConCursosYEstudiantes>,
+    private var colegiosList: List<ColegioConCursosYEstudiantesModel>,
     private val onCursoSelected: (Int) -> Unit,
     private val onEstudianteSelected: (Int) -> Unit
 ) : RecyclerView.Adapter<ColegiosViewHolder>() {
 
-    fun updateList(newList: List<ColegioConCursosYEstudiantes>) {
+    fun updateList(newList: List<ColegioConCursosYEstudiantesModel>) {
         if (colegiosList.isEmpty()) {
             this.colegiosList = newList
             notifyDataSetChanged()

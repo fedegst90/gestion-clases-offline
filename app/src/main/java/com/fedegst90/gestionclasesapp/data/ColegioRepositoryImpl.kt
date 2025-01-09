@@ -10,7 +10,12 @@ class ColegioRepositoryImpl @Inject constructor(private val colegioDao: ColegioD
     ColegioRepository {
 
     override suspend fun insertColegio(colegio: ColegioEntity) {
-        colegioDao.insertColegio(colegio)
+        val existe = colegioDao.existeColegioConCodigo(colegio.nro) > 0
+        if (existe) {
+            throw Exception("Ya existe un colegio con el número de código ${colegio.nro}")
+        } else {
+            colegioDao.insertColegio(colegio)
+        }
     }
 
     override suspend fun updateColegio(colegio: ColegioEntity) {

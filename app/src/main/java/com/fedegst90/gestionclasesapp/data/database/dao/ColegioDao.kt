@@ -16,6 +16,11 @@ interface ColegioDao {
     @Insert
     suspend fun insertColegio(colegio: ColegioEntity)
 
+    // Verifica  si existe colegio con el mismo numero
+    @Query("SELECT COUNT(*) FROM colegio_table WHERE nro = :nro")
+    suspend fun existeColegioConCodigo(nro: Int): Int
+
+
     // Actualizar un colegio
     @Update
     suspend fun updateColegio(colegio: ColegioEntity)

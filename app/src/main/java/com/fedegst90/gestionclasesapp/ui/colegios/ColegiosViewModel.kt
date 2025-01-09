@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
 import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursosYEstudiantes
+import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 import com.fedegst90.gestionclasesapp.domine.usecase.DeleteColegioUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetAllColegioConCursosUseCase
@@ -33,13 +34,13 @@ class ColegiosViewModel @Inject constructor(
     private val getAllColegiosConCursosConEstudiantesUseCase: GetAllColegiosConCursosConEstudiantesUseCase
 
 ) : ViewModel() {
-
+    private val dispatcherIO = Dispatchers.IO
 
     private val _colegioConCursosConEstudiantes =
-        MutableLiveData<List<ColegioConCursosYEstudiantes>>()
-    val colegioConCursosConEstudiantes: LiveData<List<ColegioConCursosYEstudiantes>> get() = _colegioConCursosConEstudiantes
+        MutableLiveData<List<ColegioConCursosYEstudiantesModel>>()
+    val colegioConCursosConEstudiantes: LiveData<List<ColegioConCursosYEstudiantesModel>>
+        get() = _colegioConCursosConEstudiantes
 
-    // Obtener colegio con cursos
     fun getAllColegiosConCursosConEstudiantes() {
         viewModelScope.launch {
             val result = withContext(dispatcherIO) {
@@ -49,8 +50,20 @@ class ColegiosViewModel @Inject constructor(
         }
     }
 
+    private val _insertColegioResult = MutableLiveData<Result<String>>()
+    val insertColegioResult: LiveData<Result<String>> get() = _insertColegioResult
 
-    private val dispatcherIO = Dispatchers.IO
+    fun insertColegio(colegio: ColegioModel) {
+        viewModelScope.launch {
+            try {
+                insertColegioUseCase(colegio)
+                _insertColegioResult.postValue(Result.success("Colegio agregado exitosamente"))
+            } catch (e: Exception) {
+                _insertColegioResult.postValue(Result.failure(e))
+            }
+        }
+    }
+
 
     // LiveData para exponer los resultados
     private val _colegios = MutableLiveData<List<ColegioModel>>()
@@ -71,15 +84,21 @@ class ColegiosViewModel @Inject constructor(
             _colegioConCursos.postValue(result)
         }
     }
+    /*
+        // Insertar colegio
+        fun insertColegio(colegio: ColegioModel) {
+            viewModelScope.launch {
+                withContext(Dispatchers.IO) {
+                    try {
+                        insertColegioUseCase(colegio)
+                    }catch (e:Exception){
 
-    // Insertar colegio
-    fun insertColegio(colegio: ColegioModel) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                insertColegioUseCase(colegio)
+                    }
+                }
             }
         }
-    }
+
+     */
 
     // Actualizar colegio
     fun updateColegio(colegio: ColegioModel) {

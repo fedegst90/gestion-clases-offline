@@ -2,6 +2,7 @@ package com.fedegst90.gestionclasesapp.domine
 
 import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
 import com.fedegst90.gestionclasesapp.data.database.entity.ColegioEntity
+import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosModel
 
 interface ColegioRepository {
 

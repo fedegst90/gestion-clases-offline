@@ -21,8 +21,8 @@ import com.fedegst90.gestionclasesapp.R
 import com.fedegst90.gestionclasesapp.core.makeViewsInvisible
 import com.fedegst90.gestionclasesapp.core.makeViewsVisible
 import com.fedegst90.gestionclasesapp.core.showToast
-import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursosYEstudiantes
 import com.fedegst90.gestionclasesapp.databinding.FragmentColegiosBinding
+import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 import com.fedegst90.gestionclasesapp.ui.colegios.adapter.ColegiosAdapter
 import com.fedegst90.gestionclasesapp.ui.cursos.CursosViewModel
@@ -40,7 +40,7 @@ class ColegiosFragment : Fragment() {
     private lateinit var adapterColegio: ColegiosAdapter
     private lateinit var popupAdapter: ArrayAdapter<String>
     private lateinit var listPopupWindow: ListPopupWindow
-    private var listColegioModel: List<ColegioConCursosYEstudiantes> = emptyList()
+    private var listColegioModel: List<ColegioConCursosYEstudiantesModel> = emptyList()
 
 
     override fun onCreateView(
@@ -95,6 +95,14 @@ class ColegiosFragment : Fragment() {
         viewModelEstudiantes.estudiantes.observe(viewLifecycleOwner) {
             binding.includeItemColegio.tvCantidadEstudiantes.text = it.size.toString()
         }
+
+        viewModelColegios.insertColegioResult.observe(viewLifecycleOwner) { result ->
+            val msg = result.fold(
+                onSuccess = { it },
+                onFailure = { it.message ?: "Error al agregar Colegio" })
+            requireContext().showToast(msg)
+        }
+
     }
 
     private fun setupListener() {
@@ -150,7 +158,7 @@ class ColegiosFragment : Fragment() {
         }
     }
 
-    private fun updatePopupAdapter(filterList: List<ColegioConCursosYEstudiantes>) {
+    private fun updatePopupAdapter(filterList: List<ColegioConCursosYEstudiantesModel>) {
         popupAdapter.clear()
         popupAdapter.addAll(filterList.map { it.colegio.nombre })
         if (filterList.isNotEmpty()) {
@@ -160,7 +168,7 @@ class ColegiosFragment : Fragment() {
         }
     }
 
-    private fun filterItems(query: String): List<ColegioConCursosYEstudiantes> =
+    private fun filterItems(query: String): List<ColegioConCursosYEstudiantesModel> =
         listColegioModel.filter { it.colegio.nombre.contains(query, ignoreCase = true) }
 
     @SuppressLint("MissingInflatedId")
