@@ -1,4 +1,4 @@
-package com.fedegst90.gestionclasesapp.data.entity
+package com.fedegst90.gestionclasesapp.data.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -2,7 +2,9 @@ package com.fedegst90.gestionclasesapp.domine.usecase
 
 import com.fedegst90.gestionclasesapp.core.toEntity
 import com.fedegst90.gestionclasesapp.core.toModel
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
 import com.fedegst90.gestionclasesapp.domine.ColegioRepository
+import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosModel
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 import javax.inject.Inject
 
@@ -39,5 +41,13 @@ class GetColegioByIdUseCase @Inject constructor(private val colegioRepository: C
 class GetColegioByNameUseCase @Inject constructor(private val colegioRepository: ColegioRepository) {
     suspend operator fun invoke(nombre: String): ColegioModel? {
         return colegioRepository.getColegioByName(nombre)?.toModel()
+    }
+}
+
+class GetColegioConCursosUseCase @Inject constructor(
+    private val colegioRepository: ColegioRepository
+) {
+    suspend operator fun invoke(): List<ColegioConCursos> {
+        return colegioRepository.getColegioConCursos()
     }
 }

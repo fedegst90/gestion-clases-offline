@@ -10,4 +10,8 @@ data class EstudianteModel(
     val legajo: Int,
     val colegioId: Int,
     val cursoId: Int,
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/IU
 )

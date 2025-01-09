@@ -1,8 +1,10 @@
 package com.fedegst90.gestionclasesapp.core
 
-import com.fedegst90.gestionclasesapp.data.entity.ColegioEntity
-import com.fedegst90.gestionclasesapp.data.entity.EstudianteEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.CursosEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.EstudianteEntity
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
+import com.fedegst90.gestionclasesapp.domine.model.CursoModel
 import com.fedegst90.gestionclasesapp.domine.model.EstudianteModel
 
 
@@ -32,7 +34,12 @@ fun EstudianteEntity.toModel(): EstudianteModel {
         legajo = this.legajo,
         colegioId = this.colegioId,
         cursoId = this.cursoId,
+<<<<<<< HEAD
         sexo = sexo
+=======
+        sexo = sexo,
+
+>>>>>>> origin/IU
     )
 }
 
@@ -45,6 +52,29 @@ fun EstudianteModel.toEntity(): EstudianteEntity {
         legajo = this.legajo,
         colegioId = this.colegioId,
         cursoId = this.cursoId,
+<<<<<<< HEAD
         sexo = sexo
+=======
+        sexo = sexo,
+    )
+}
+
+
+fun CursosEntity.toModel(): CursoModel {
+    return CursoModel(
+        id = this.id,
+        year = this.year,
+        division = this.division,
+        escuelaId = this.escuelaId
+    )
+}
+
+fun CursoModel.toEntity(): CursosEntity {
+    return CursosEntity(
+        id = this.id,
+        year = this.year,
+        division = this.division,
+        escuelaId = this.escuelaId
+>>>>>>> origin/IU
     )
 }

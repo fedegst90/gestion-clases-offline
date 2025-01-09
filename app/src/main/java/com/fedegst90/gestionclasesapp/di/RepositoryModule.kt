@@ -1,10 +1,13 @@
 package com.fedegst90.gestionclasesapp.di
 
 import com.fedegst90.gestionclasesapp.data.ColegioRepositoryImpl
+import com.fedegst90.gestionclasesapp.data.CursoRepositoryImpl
 import com.fedegst90.gestionclasesapp.data.EstudianteRepositoryImpl
-import com.fedegst90.gestionclasesapp.data.dao.ColegioDao
-import com.fedegst90.gestionclasesapp.data.dao.EstudianteDao
+import com.fedegst90.gestionclasesapp.data.database.dao.ColegioDao
+import com.fedegst90.gestionclasesapp.data.database.dao.CursoDao
+import com.fedegst90.gestionclasesapp.data.database.dao.EstudianteDao
 import com.fedegst90.gestionclasesapp.domine.ColegioRepository
+import com.fedegst90.gestionclasesapp.domine.CursoRepository
 import com.fedegst90.gestionclasesapp.domine.EstudianteRepository
 import dagger.Module
 import dagger.Provides
@@ -32,6 +35,16 @@ object RepositoryModule {
     ): ColegioRepository {
         return ColegioRepositoryImpl(
             colegioDao
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideCursoRepository(
+        cursoDao: CursoDao
+    ): CursoRepository {
+        return CursoRepositoryImpl(
+            cursoDao
         )
     }
 }

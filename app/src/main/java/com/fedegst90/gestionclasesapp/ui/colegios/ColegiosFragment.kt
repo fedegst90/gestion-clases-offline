@@ -15,17 +15,27 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fedegst90.gestionclasesapp.R
+<<<<<<< HEAD
 import com.fedegst90.gestionclasesapp.core.makeViewsInvisible
 import com.fedegst90.gestionclasesapp.core.makeViewsVisible
 import com.fedegst90.gestionclasesapp.core.makeVisible
 
+=======
+import com.fedegst90.gestionclasesapp.core.makeViewsGone
+import com.fedegst90.gestionclasesapp.core.makeViewsVisible
+>>>>>>> origin/IU
 
 import com.fedegst90.gestionclasesapp.core.showToast
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
 import com.fedegst90.gestionclasesapp.databinding.FragmentColegiosBinding
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
+import com.fedegst90.gestionclasesapp.domine.model.CursoModel
 import com.fedegst90.gestionclasesapp.ui.colegios.adapter.ColegiosAdapter
+import com.fedegst90.gestionclasesapp.ui.cursos.CursosViewModel
+import com.fedegst90.gestionclasesapp.ui.estudiantes.EstudiantesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,11 +43,14 @@ class ColegiosFragment : Fragment() {
 
     private var _binding: FragmentColegiosBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: ColegiosViewModel by viewModels()
+    private val viewModelColegios: ColegiosViewModel by viewModels()
+    private val viewModelEstudiantes: EstudiantesViewModel by viewModels()
+    private val viewModelCursos: CursosViewModel by viewModels()
     private lateinit var adapterColegio: ColegiosAdapter
     private lateinit var popupAdapter: ArrayAdapter<String>
     private lateinit var listPopupWindow: ListPopupWindow
-    private var listColegioModel: List<ColegioModel> = emptyList()
+    private var listColegioModel: List<ColegioConCursos> = emptyList()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,25 +71,58 @@ class ColegiosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getAllColegios()
+        setupIU()
         setupListener()
         setupObserver()
         setupSearchView()
         setupPopup()
+
+
+    }
+
+    private fun setupIU() {
+        viewModelColegios.getColegioConCursos()
+        viewModelCursos.insertCurso(CursoModel(
+            year = "1",
+            division = "1",
+            escuelaId = 1,
+            id = 1
+        ))
+        viewModelEstudiantes.getAllEstudiantes()
+        viewModelCursos.getAllCursos()
     }
 
     private fun setupObserver() {
-        viewModel.colegios.observe(viewLifecycleOwner) {
+
+        viewModelColegios.colegioConCursos.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
                 adapterColegio.updateList(listOf())
+<<<<<<< HEAD
                 makeViewsInvisible(binding.imgLeft,binding.imgRight)
             } else {
                 binding.rvColegios.makeVisible()
                 makeViewsVisible(binding.imgLeft,binding.imgRight)
                 listColegioModel=it
+=======
+                makeViewsGone(binding.imgLeft, binding.imgRight)
+            } else {
+                listColegioModel = it
+                makeViewsVisible(binding.imgLeft, binding.imgRight)
+>>>>>>> origin/IU
                 adapterColegio.updateList(it)
             }
+            binding.includeItemColegio.tvCantidadColegios.text = it.size.toString()
         }
+
+        viewModelCursos.cursos.observe(viewLifecycleOwner) {
+            binding.includeItemColegio.tvCantidadCursos.text = it.size.toString()
+        }
+
+        viewModelEstudiantes.estudiantes.observe(viewLifecycleOwner) {
+            binding.includeItemColegio.tvCantidadEstudiantes.text = it.size.toString()
+        }
+
+
     }
 
     private fun setupListener() {
@@ -86,13 +132,25 @@ class ColegiosFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapterColegio = ColegiosAdapter()
+        adapterColegio = ColegiosAdapter(
+            colegiosList = listColegioModel,
+            onCursoSelected = { colegioId -> onCursoSelected(colegioId) },
+            onEstudianteSelected = { cursoId -> onEstudianteSelected(cursoId) }
+        )
         binding.rvColegios.apply {
             setHasFixedSize(true)
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = adapterColegio
         }
+    }
+
+    private fun onEstudianteSelected(cursoId: Int) {
+        findNavController().navigate(R.id.action_navigation_colegios_to_navigation_estudiantes)
+    }
+
+    private fun onCursoSelected(colegioId: Int) {
+        findNavController().navigate(R.id.action_navigation_colegios_to_navigation_cursos)
     }
 
     private fun setupSearchView() {
@@ -115,8 +173,13 @@ class ColegiosFragment : Fragment() {
         listPopupWindow.anchorView = binding.searchView
         popupAdapter = ArrayAdapter(
             requireContext(),
+<<<<<<< HEAD
             android.R.layout.simple_list_item_1,
             listColegioModel.toMutableList().map { it.nombre })
+=======
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+            listColegioModel.toMutableList().map { it.colegio.nombre })
+>>>>>>> origin/IU
         listPopupWindow.setAdapter(popupAdapter)
 
 
@@ -127,9 +190,9 @@ class ColegiosFragment : Fragment() {
         }
     }
 
-    private fun updatePopupAdapter(filterList: List<ColegioModel>) {
+    private fun updatePopupAdapter(filterList: List<ColegioConCursos>) {
         popupAdapter.clear()
-        popupAdapter.addAll(filterList.map { it.nombre })
+        popupAdapter.addAll(filterList.map { it.colegio.nombre })
         if (filterList.isNotEmpty()) {
             listPopupWindow.show()
         } else {
@@ -137,8 +200,8 @@ class ColegiosFragment : Fragment() {
         }
     }
 
-    private fun filterItems(query: String): List<ColegioModel> =
-        listColegioModel.filter { it.nombre.contains(query, ignoreCase = true) }
+    private fun filterItems(query: String): List<ColegioConCursos> =
+        listColegioModel.filter { it.colegio.nombre.contains(query, ignoreCase = true) }
 
     @SuppressLint("MissingInflatedId")
     private fun dialogNewColegio() {
@@ -159,7 +222,7 @@ class ColegiosFragment : Fragment() {
 
         btnConfirmar.setOnClickListener {
             if (etName.text.isNotEmpty() && etNro.text.isNotEmpty()) {
-                viewModel.insertColegio(
+                viewModelColegios.insertColegio(
                     ColegioModel(
                         nombre = etName.text.toString().uppercase(),
                         nro = etNro.text.toString().toInt()
@@ -167,7 +230,7 @@ class ColegiosFragment : Fragment() {
                 )
 
                 dialog.dismiss()
-                viewModel.getAllColegios()
+                viewModelColegios.getColegioConCursos()
             } else {
                 context?.showToast("Debe completar todos los campos")
             }

@@ -2,7 +2,7 @@ package com.fedegst90.gestionclasesapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.fedegst90.gestionclasesapp.data.DataBaseApp
+import com.fedegst90.gestionclasesapp.data.database.DataBaseApp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

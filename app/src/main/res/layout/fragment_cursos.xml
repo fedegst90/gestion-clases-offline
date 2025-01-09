@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondos"
-    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".ui.cursos.CursosFragment">
 
     <TextView
-        android:id="@+id/courseTitle"
+        android:id="@+id/tvCursoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginBottom="8dp"
-        android:text="Select Course"
+        android:text="Seccion Cursos"
+        android:textAllCaps="true"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCursos"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/white" />
+
 
     <Button
-        android:id="@+id/btnAddCurso"
+        android:id="@+id/btnAddColegio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primario"
+        android:layout_marginTop="35dp"
+        android:backgroundTint="@color/segundo"
         android:text="@string/btn_agregar_curso"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-</LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
