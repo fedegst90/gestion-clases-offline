@@ -17,6 +17,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fedegst90.gestionclasesapp.R
+import com.fedegst90.gestionclasesapp.core.makeViewsInvisible
+import com.fedegst90.gestionclasesapp.core.makeViewsVisible
+import com.fedegst90.gestionclasesapp.core.makeVisible
+
 
 import com.fedegst90.gestionclasesapp.core.showToast
 import com.fedegst90.gestionclasesapp.databinding.FragmentColegiosBinding
@@ -57,26 +61,21 @@ class ColegiosFragment : Fragment() {
         viewModel.getAllColegios()
         setupListener()
         setupObserver()
-       // setupSearchView()
-        //setupPopup()
+        setupSearchView()
+        setupPopup()
     }
 
     private fun setupObserver() {
         viewModel.colegios.observe(viewLifecycleOwner) {
-           /* if (it.isEmpty()) {
+            if (it.isEmpty()) {
                 adapterColegio.updateList(listOf())
+                makeViewsInvisible(binding.imgLeft,binding.imgRight)
             } else {
-<<<<<<< HEAD
-
-            */
-                Log.d("ColegiosFragment", "Colegios recibidos: ${it}")
+                binding.rvColegios.makeVisible()
+                makeViewsVisible(binding.imgLeft,binding.imgRight)
                 listColegioModel=it
-=======
-                listColegioModel = it
->>>>>>> origin/IU
                 adapterColegio.updateList(it)
-
-            //}
+            }
         }
     }
 
@@ -116,7 +115,7 @@ class ColegiosFragment : Fragment() {
         listPopupWindow.anchorView = binding.searchView
         popupAdapter = ArrayAdapter(
             requireContext(),
-            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+            android.R.layout.simple_list_item_1,
             listColegioModel.toMutableList().map { it.nombre })
         listPopupWindow.setAdapter(popupAdapter)
 

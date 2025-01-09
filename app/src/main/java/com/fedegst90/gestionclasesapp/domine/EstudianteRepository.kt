@@ -16,5 +16,5 @@ interface EstudianteRepository {
 
     suspend fun getStudentsByColegio(colegioId: Int): List<EstudianteEntity>
 
-    suspend fun getStudentsByCursoAndDivision(curso: Int, division: String): List<EstudianteEntity>
+    suspend fun getStudentsByCursoAndDivision(curso: Int): List<EstudianteEntity>
 }

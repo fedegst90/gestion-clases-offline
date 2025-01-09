@@ -43,7 +43,7 @@ class GetEstudiantesByColegioUseCase @Inject constructor(private val estudianteR
 }
 
 class GetEstudiantesByCursoAndDivisionUseCase @Inject constructor(private val estudianteRepository: EstudianteRepository) {
-    suspend operator fun invoke(curso: Int, division: String): List<EstudianteModel> {
-        return estudianteRepository.getStudentsByCursoAndDivision(curso, division).map { it.toModel() }
+    suspend operator fun invoke(curso: Int): List<EstudianteModel> {
+        return estudianteRepository.getStudentsByCursoAndDivision(curso).map { it.toModel() }
     }
 }

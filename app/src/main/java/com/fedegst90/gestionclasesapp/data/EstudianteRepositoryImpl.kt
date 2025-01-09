@@ -35,9 +35,8 @@ class EstudianteRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getStudentsByCursoAndDivision(
-        curso: Int,
-        division: String
+        curso: Int
     ): List<EstudianteEntity> {
-        return estudianteDao.getStudentsByCursoAndDivision(curso, division)
+        return estudianteDao.getStudentsByCursoAndDivision(curso)
     }
 }

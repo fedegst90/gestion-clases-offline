@@ -9,6 +9,5 @@ data class EstudianteModel(
     val sexo: Char,
     val legajo: Int,
     val colegioId: Int,
-    val curso: Int,
-    val division: String
+    val cursoId: Int,
 )

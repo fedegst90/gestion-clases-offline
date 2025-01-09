@@ -1,5 +1,6 @@
 package com.fedegst90.gestionclasesapp.ui.colegios.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -13,11 +14,15 @@ class ColegiosAdapter(
 ) : RecyclerView.Adapter<ColegiosViewHolder>() {
 
     fun updateList(newList: List<ColegioModel>) {
-        val listdiff = GenericDiff(colegiosList, newList, idSelector = { it.id })
-        val result = DiffUtil.calculateDiff(listdiff)
-        colegiosList = newList
-
-        result.dispatchUpdatesTo(this)
+        if (colegiosList.isEmpty()) {
+            this.colegiosList = newList
+            notifyDataSetChanged()
+        } else {
+            val listdiff = GenericDiff(colegiosList, newList, idSelector = { it.id })
+            val result = DiffUtil.calculateDiff(listdiff)
+            colegiosList = newList
+            result.dispatchUpdatesTo(this)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColegiosViewHolder {

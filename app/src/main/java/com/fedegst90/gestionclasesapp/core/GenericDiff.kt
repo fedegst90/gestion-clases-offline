@@ -14,10 +14,18 @@ class GenericDiff<T : Any>(
     override fun getNewListSize(): Int = newList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        if (oldList.isEmpty() && newList.isNotEmpty()) {
+            return false
+        }
         return idSelector(oldList[oldItemPosition]) == idSelector(newList[newItemPosition])
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition] == newList[newItemPosition]
+
+        return if (oldList.isEmpty() && newList.isNotEmpty()) {
+            false
+        } else {
+            oldList[oldItemPosition] == newList[newItemPosition]
+        }
     }
 }
