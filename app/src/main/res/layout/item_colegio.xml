@@ -8,113 +8,127 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="6dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent">
+
+        <!-- Título -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
             android:text="Totales"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Imagen de Colegio -->
+        <ImageView
+            android:id="@+id/imgEscuela"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/img_escuela"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+        <!-- Nombre Colegio -->
+        <TextView
+            android:id="@+id/tvColegios"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingVertical="8dp">
+            android:layout_margin="15dp"
+            android:text="Colegios"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgEscuela"
+            app:layout_constraintEnd_toStartOf="@+id/tvCantidadColegios"
+            app:layout_constraintStart_toEndOf="@+id/imgEscuela"
+            app:layout_constraintTop_toTopOf="@+id/imgEscuela" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/img_escuela" />
-
-            <TextView
-                android:id="@+id/tvColegios"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_weight="1"
-                android:text="Colegios"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvCantidadColegios"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="130"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Cantidad Colegios -->
+        <TextView
+            android:id="@+id/tvCantidadColegios"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingVertical="8dp">
+            android:layout_margin="15dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgEscuela"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgEscuela" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/img_cursos" />
+        <!-- Imagen de Cursos -->
+        <ImageView
+            android:id="@+id/imgCursos"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/img_cursos"
+            android:layout_margin="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgEscuela" />
 
-            <TextView
-                android:id="@+id/tvCursos"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_weight="1"
-                android:text="Cursos"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvCantidadCursos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="130"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Nombre Cursos -->
+        <TextView
+            android:id="@+id/tvCursos"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingVertical="8dp">
+            android:text="Cursos"
+            android:textColor="@color/black"
+            android:layout_margin="15dp"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgCursos"
+            app:layout_constraintStart_toEndOf="@+id/imgCursos"
+            app:layout_constraintTop_toTopOf="@+id/imgCursos" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/img_hombre" />
+        <!-- Cantidad Cursos -->
+        <TextView
+            android:id="@+id/tvCantidadCursos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgCursos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgCursos" />
 
-            <TextView
-                android:id="@+id/tvEstudiantes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_weight="1"
-                android:text="Estudiantes"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+        <!-- Imagen de Estudiantes -->
+        <ImageView
+            android:id="@+id/imgEstudiantes"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/img_hombre"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/imgCursos"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <TextView
-                android:id="@+id/tvCantidadEstudiantes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="130"
-                android:textSize="20sp" />
-        </LinearLayout>
+        <!-- Nombre Estudiantes -->
+        <TextView
+            android:id="@+id/tvEstudiantes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Estudiantes"
+            android:textColor="@color/black"
+            android:layout_margin="15dp"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgEstudiantes"
+            app:layout_constraintStart_toEndOf="@+id/imgEstudiantes"
+            app:layout_constraintTop_toTopOf="@+id/imgEstudiantes" />
 
-    </LinearLayout>
+        <!-- Cantidad Estudiantes -->
+        <TextView
+            android:id="@+id/tvCantidadEstudiantes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgEstudiantes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgEstudiantes" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

@@ -1,11 +1,13 @@
-package com.fedegst90.gestionclasesapp.data.dao
+package com.fedegst90.gestionclasesapp.data.database.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
-import com.fedegst90.gestionclasesapp.data.entity.ColegioEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioEntity
 
 @Dao
 interface ColegioDao {
@@ -33,4 +35,9 @@ interface ColegioDao {
     // Obtener un colegio por nombre
     @Query("SELECT * FROM colegio_table WHERE nombre = :nombre")
     suspend fun getColegioByName(nombre: String): ColegioEntity?
+
+    @Transaction
+    @Query("SELECT * FROM colegio_table")
+    suspend fun getColegioConCursos(): List<ColegioConCursos>
+
 }

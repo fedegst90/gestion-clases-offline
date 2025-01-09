@@ -1,6 +1,6 @@
 package com.fedegst90.gestionclasesapp.domine
 
-import com.fedegst90.gestionclasesapp.data.entity.EstudianteEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.EstudianteEntity
 
 interface EstudianteRepository {
 
@@ -16,5 +16,5 @@ interface EstudianteRepository {
 
     suspend fun getStudentsByColegio(colegioId: Int): List<EstudianteEntity>
 
-    suspend fun getStudentsByCursoAndDivision(curso: Int, division: String): List<EstudianteEntity>
+    suspend fun getStudentsByCursoAndDivision(curso: Int): List<EstudianteEntity>
 }

@@ -97,10 +97,10 @@ class EstudiantesViewModel @Inject constructor(
     }
 
     // Obtener estudiantes por curso y división
-    fun getEstudiantesByCursoAndDivision(curso: Int, division: String) {
+    fun getEstudiantesByCursoAndDivision(curso: Int) {
         viewModelScope.launch {
             val result = withContext(dispatcherIO) {
-                getEstudiantesByCursoAndDivisionUseCase(curso, division)
+                getEstudiantesByCursoAndDivisionUseCase(curso)
             }
             _estudiantes.postValue(result)
         }

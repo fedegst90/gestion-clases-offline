@@ -1,11 +1,11 @@
-package com.fedegst90.gestionclasesapp.data.dao
+package com.fedegst90.gestionclasesapp.data.database.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.fedegst90.gestionclasesapp.data.entity.EstudianteEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.EstudianteEntity
 
 
 @Dao

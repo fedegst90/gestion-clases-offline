@@ -1,6 +1,7 @@
 package com.fedegst90.gestionclasesapp.domine
 
-import com.fedegst90.gestionclasesapp.data.entity.ColegioEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioEntity
 
 interface ColegioRepository {
 
@@ -15,5 +16,8 @@ interface ColegioRepository {
     suspend fun getColegioById(colegioId: Int): ColegioEntity?
 
     suspend fun getColegioByName(nombre: String): ColegioEntity?
+
+    suspend fun getColegioConCursos(): List<ColegioConCursos>
+
 }
 

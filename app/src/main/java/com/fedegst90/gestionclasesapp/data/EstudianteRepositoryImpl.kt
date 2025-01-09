@@ -1,7 +1,7 @@
 package com.fedegst90.gestionclasesapp.data
 
-import com.fedegst90.gestionclasesapp.data.dao.EstudianteDao
-import com.fedegst90.gestionclasesapp.data.entity.EstudianteEntity
+import com.fedegst90.gestionclasesapp.data.database.dao.EstudianteDao
+import com.fedegst90.gestionclasesapp.data.database.entity.EstudianteEntity
 import com.fedegst90.gestionclasesapp.domine.EstudianteRepository
 import javax.inject.Inject
 
@@ -35,9 +35,8 @@ class EstudianteRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getStudentsByCursoAndDivision(
-        curso: Int,
-        division: String
+        curso: Int
     ): List<EstudianteEntity> {
-        return estudianteDao.getStudentsByCursoAndDivision(curso, division)
+        return estudianteDao.getStudentsByCursoAndDivision(curso)
     }
 }

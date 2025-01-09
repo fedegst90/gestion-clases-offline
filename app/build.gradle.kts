@@ -42,6 +42,7 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.activity)
     //DaggerHilt
     val dagger_version = "2.48"
     implementation("com.google.dagger:hilt-android:$dagger_version")

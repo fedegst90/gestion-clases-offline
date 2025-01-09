@@ -1,7 +1,8 @@
 package com.fedegst90.gestionclasesapp.data
 
-import com.fedegst90.gestionclasesapp.data.dao.ColegioDao
-import com.fedegst90.gestionclasesapp.data.entity.ColegioEntity
+import com.fedegst90.gestionclasesapp.data.database.dao.ColegioDao
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioEntity
 import com.fedegst90.gestionclasesapp.domine.ColegioRepository
 import javax.inject.Inject
 
@@ -31,4 +32,9 @@ class ColegioRepositoryImpl @Inject constructor(private val colegioDao: ColegioD
     override suspend fun getColegioByName(nombre: String): ColegioEntity? {
         return colegioDao.getColegioByName(nombre)
     }
+
+    override suspend fun getColegioConCursos(): List<ColegioConCursos> {
+        return colegioDao.getColegioConCursos()
+    }
+
 }

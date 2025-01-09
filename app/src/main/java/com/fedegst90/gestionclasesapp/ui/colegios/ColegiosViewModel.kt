@@ -4,11 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 import com.fedegst90.gestionclasesapp.domine.usecase.DeleteColegioUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetAllColegiosUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetColegioByIdUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetColegioByNameUseCase
+import com.fedegst90.gestionclasesapp.domine.usecase.GetColegioConCursosUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.InsertColegioUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.UpdateColegioUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,6 +27,7 @@ class ColegiosViewModel @Inject constructor(
     private val getAllColegiosUseCase: GetAllColegiosUseCase,
     private val getColegioByIdUseCase: GetColegioByIdUseCase,
     private val getColegioByNameUseCase: GetColegioByNameUseCase,
+    private val getColegioConCursosUseCase: GetColegioConCursosUseCase
 
     ) : ViewModel() {
 
@@ -36,6 +39,19 @@ class ColegiosViewModel @Inject constructor(
 
     private val _selectedColegio = MutableLiveData<ColegioModel?>()
     val selectedColegio: LiveData<ColegioModel?> get() = _selectedColegio
+
+    private val _colegioConCursos = MutableLiveData<List<ColegioConCursos>>()
+    val colegioConCursos: LiveData<List<ColegioConCursos>> get() = _colegioConCursos
+
+    // Obtener colegio con cursos
+    fun getColegioConCursos() {
+        viewModelScope.launch {
+            val result = withContext(dispatcherIO) {
+                getColegioConCursosUseCase()
+            }
+            _colegioConCursos.postValue(result)
+        }
+    }
 
     // Insertar colegio
     fun insertColegio(colegio: ColegioModel) {

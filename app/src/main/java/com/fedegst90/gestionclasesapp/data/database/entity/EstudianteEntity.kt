@@ -1,4 +1,4 @@
-package com.fedegst90.gestionclasesapp.data.entity
+package com.fedegst90.gestionclasesapp.data.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -13,6 +13,6 @@ data class EstudianteEntity(
     @ColumnInfo("nro_doc") val nroDoc: Int,
     @ColumnInfo("sexo") val sexo: Char,
     @ColumnInfo("legajo") val legajo: Int,
-    @ColumnInfo("colegio_id") val colegio: Int,
+    @ColumnInfo("colegio_id") val colegioId: Int,
     @ColumnInfo("curso_id") val cursoId: Int
 )

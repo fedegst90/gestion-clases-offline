@@ -1,22 +1,32 @@
 package com.fedegst90.gestionclasesapp.ui.colegios.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.fedegst90.gestionclasesapp.R
 import com.fedegst90.gestionclasesapp.core.GenericDiff
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 
 class ColegiosAdapter(
-    private var colegiosList: List<ColegioModel> = emptyList()
+    private var colegiosList: List<ColegioConCursos>,
+    private val onCursoSelected: (Int) -> Unit,
+    private val onEstudianteSelected: (Int) -> Unit
 ) : RecyclerView.Adapter<ColegiosViewHolder>() {
 
-    fun updateList(newList: List<ColegioModel>) {
-        val listdiff = GenericDiff(colegiosList, newList, idSelector = { it.id })
-        val result = DiffUtil.calculateDiff(listdiff)
-        colegiosList = newList
-        result.dispatchUpdatesTo(this)
+    fun updateList(newList: List<ColegioConCursos>) {
+
+        if (colegiosList.isEmpty()){
+            this.colegiosList=newList
+            notifyDataSetChanged()
+        }else {
+            val listdiff = GenericDiff(colegiosList, newList, idSelector = { it.colegio.id })
+            val result = DiffUtil.calculateDiff(listdiff)
+            colegiosList = newList
+            result.dispatchUpdatesTo(this)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColegiosViewHolder {
@@ -29,6 +39,6 @@ class ColegiosAdapter(
 
     override fun onBindViewHolder(holder: ColegiosViewHolder, position: Int) {
         val item = colegiosList[position]
-        holder.parse(item)
+        holder.parse(item,onCursoSelected, onEstudianteSelected)
     }
 }
