@@ -96,10 +96,14 @@ class ColegiosFragment : Fragment() {
         }
 
         viewModelColegios.insertColegioResult.observe(viewLifecycleOwner) { result ->
-            val msg = result.fold(
-                onSuccess = { it },
-                onFailure = { it.message ?: "Error al agregar Colegio" })
-            requireContext().showToast(msg)
+            result.onSuccess {
+                requireContext().showToast(it)
+                setupIU()
+            }
+            result.onFailure {
+                requireContext().showToast(it.message ?: "Error al agregar Colegio")
+            }
+
         }
 
     }
@@ -196,8 +200,6 @@ class ColegiosFragment : Fragment() {
                     )
                 )
                 dialog.dismiss()
-                viewModelColegios.getAllColegiosConCursosConEstudiantes()
-                setupIU()
             } else {
                 context?.showToast("Debe completar todos los campos")
             }

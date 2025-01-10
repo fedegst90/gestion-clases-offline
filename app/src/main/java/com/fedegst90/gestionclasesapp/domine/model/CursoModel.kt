@@ -5,5 +5,5 @@ data class CursoModel(
     val year: String,
     val division: String,
     val colegioId: Int,
-    val materiaId: Int
+    val materiaId: String
 )

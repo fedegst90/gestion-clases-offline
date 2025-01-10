@@ -3,7 +3,6 @@ package com.fedegst90.gestionclasesapp.ui.colegios.adapter
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.fedegst90.gestionclasesapp.core.makeGone
-import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursosYEstudiantes
 import com.fedegst90.gestionclasesapp.databinding.ItemColegioBinding
 import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
 

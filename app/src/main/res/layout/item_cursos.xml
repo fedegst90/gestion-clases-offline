@@ -40,9 +40,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                app:cardBackgroundColor="@android:color/white"
                 app:cardCornerRadius="32dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle">
@@ -51,10 +51,25 @@
                     android:id="@+id/rvCursos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:background="@drawable/grad" />
+                    android:background="@drawable/grad"
+                    android:clipToPadding="false" />
 
             </androidx.cardview.widget.CardView>
+
+
+            <Button
+                android:id="@+id/btnAddCurso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ Curso"
+                android:drawableStart="@drawable/ic_right"
+                app:layout_constraintTop_toBottomOf="@id/cardRecyclerView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

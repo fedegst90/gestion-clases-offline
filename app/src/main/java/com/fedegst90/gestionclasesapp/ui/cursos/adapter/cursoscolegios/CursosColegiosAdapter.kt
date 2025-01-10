@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fedegst90.gestionclasesapp.R
 import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
-import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 
 class CursosColegiosAdapter(
-    private val listColegiosModel: List<ColegioConCursosYEstudiantesModel>
+    private val listColegiosModel: List<ColegioConCursosYEstudiantesModel>,
+    private val onAddCursoSelected: (Int) -> Unit
 ) : RecyclerView.Adapter<CursosColegiosViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CursosColegiosViewHolder {
         return CursosColegiosViewHolder(
@@ -20,6 +20,6 @@ class CursosColegiosAdapter(
 
     override fun onBindViewHolder(holder: CursosColegiosViewHolder, position: Int) {
         val item = listColegiosModel[position]
-        holder.parse(item)
+        holder.parse(item, onAddCursoSelected)
     }
 }
