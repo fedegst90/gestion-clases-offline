@@ -1,20 +1,20 @@
 package com.fedegst90.gestionclasesapp.domine
 
-import com.fedegst90.gestionclasesapp.data.database.entity.EstudianteEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.EstudiantesEntity
 
 interface EstudianteRepository {
 
-    suspend fun insertStudent(student: EstudianteEntity)
+    suspend fun insertStudent(student: EstudiantesEntity)
 
-    suspend fun updateStudent(student: EstudianteEntity)
+    suspend fun updateStudent(student: EstudiantesEntity)
 
-    suspend fun deleteStudent(student: EstudianteEntity)
+    suspend fun deleteStudent(student: EstudiantesEntity)
 
-    suspend fun getAllStudents(): List<EstudianteEntity>
+    suspend fun getAllStudents(): List<EstudiantesEntity>
 
-    suspend fun getStudentById(studentId: Int): EstudianteEntity?
+    suspend fun getStudentById(studentId: Int): EstudiantesEntity?
 
-    suspend fun getStudentsByColegio(colegioId: Int): List<EstudianteEntity>
+    suspend fun getStudentsByColegio(colegioId: Int): List<EstudiantesEntity>
 
-    suspend fun getStudentsByCursoAndDivision(curso: Int): List<EstudianteEntity>
+    suspend fun getStudentsByCursoAndDivision(curso: Int): List<EstudiantesEntity>
 }

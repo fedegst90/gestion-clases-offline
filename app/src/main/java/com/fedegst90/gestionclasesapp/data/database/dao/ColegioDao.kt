@@ -7,14 +7,14 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
-import com.fedegst90.gestionclasesapp.data.database.entity.ColegioEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegiosEntity
 
 @Dao
 interface ColegioDao {
 
     // Insertar un colegio
     @Insert
-    suspend fun insertColegio(colegio: ColegioEntity)
+    suspend fun insertColegio(colegio: ColegiosEntity)
 
     // Verifica  si existe colegio con el mismo numero
     @Query("SELECT COUNT(*) FROM colegio_table WHERE nro = :nro")
@@ -23,23 +23,23 @@ interface ColegioDao {
 
     // Actualizar un colegio
     @Update
-    suspend fun updateColegio(colegio: ColegioEntity)
+    suspend fun updateColegio(colegio: ColegiosEntity)
 
     // Eliminar un colegio
     @Delete
-    suspend fun deleteColegio(colegio: ColegioEntity)
+    suspend fun deleteColegio(colegio: ColegiosEntity)
 
     // Obtener todos los colegios
     @Query("SELECT * FROM colegio_table")
-    suspend fun getAllColegios(): List<ColegioEntity>
+    suspend fun getAllColegios(): List<ColegiosEntity>
 
     // Obtener un colegio por ID
     @Query("SELECT * FROM colegio_table WHERE id = :colegioId")
-    suspend fun getColegioById(colegioId: Int): ColegioEntity?
+    suspend fun getColegioById(colegioId: Int): ColegiosEntity?
 
     // Obtener un colegio por nombre
     @Query("SELECT * FROM colegio_table WHERE nombre = :nombre")
-    suspend fun getColegioByName(nombre: String): ColegioEntity?
+    suspend fun getColegioByName(nombre: String): ColegiosEntity?
 
     @Transaction
     @Query("SELECT * FROM colegio_table")

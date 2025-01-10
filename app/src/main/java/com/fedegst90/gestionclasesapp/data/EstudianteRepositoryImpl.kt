@@ -1,7 +1,7 @@
 package com.fedegst90.gestionclasesapp.data
 
 import com.fedegst90.gestionclasesapp.data.database.dao.EstudianteDao
-import com.fedegst90.gestionclasesapp.data.database.entity.EstudianteEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.EstudiantesEntity
 import com.fedegst90.gestionclasesapp.domine.EstudianteRepository
 import javax.inject.Inject
 
@@ -10,33 +10,33 @@ class EstudianteRepositoryImpl @Inject constructor(
 ) :
     EstudianteRepository {
 
-    override suspend fun insertStudent(student: EstudianteEntity) {
+    override suspend fun insertStudent(student: EstudiantesEntity) {
         estudianteDao.insertStudent(student)
     }
 
-    override suspend fun updateStudent(student: EstudianteEntity) {
+    override suspend fun updateStudent(student: EstudiantesEntity) {
         estudianteDao.updateStudent(student)
     }
 
-    override suspend fun deleteStudent(student: EstudianteEntity) {
+    override suspend fun deleteStudent(student: EstudiantesEntity) {
         estudianteDao.deleteStudent(student)
     }
 
-    override suspend fun getAllStudents(): List<EstudianteEntity> {
+    override suspend fun getAllStudents(): List<EstudiantesEntity> {
         return estudianteDao.getAllStudents()
     }
 
-    override suspend fun getStudentById(studentId: Int): EstudianteEntity? {
+    override suspend fun getStudentById(studentId: Int): EstudiantesEntity? {
         return estudianteDao.getStudentById(studentId)
     }
 
-    override suspend fun getStudentsByColegio(colegioId: Int): List<EstudianteEntity> {
+    override suspend fun getStudentsByColegio(colegioId: Int): List<EstudiantesEntity> {
         return estudianteDao.getStudentsByColegio(colegioId)
     }
 
     override suspend fun getStudentsByCursoAndDivision(
         curso: Int
-    ): List<EstudianteEntity> {
+    ): List<EstudiantesEntity> {
         return estudianteDao.getStudentsByCursoAndDivision(curso)
     }
 }

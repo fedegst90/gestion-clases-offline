@@ -4,7 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Relation
 
 data class ColegioConCursos(
-    @Embedded val colegio: ColegioEntity,
+    @Embedded val colegio: ColegiosEntity,
     @Relation(
         parentColumn = "id",
         entityColumn = "colegio_id"
@@ -18,10 +18,10 @@ data class CursoConEstudiantes(
         parentColumn = "id",
         entityColumn = "curso_id"
     )
-    val estudiantes: List<EstudianteEntity>
+    val estudiantes: List<EstudiantesEntity>
 )
 
 data class ColegioConCursosYEstudiantes(
-    @Embedded val colegio: ColegioEntity,
+    @Embedded val colegio: ColegiosEntity,
     val cursos: List<CursoConEstudiantes>
 )

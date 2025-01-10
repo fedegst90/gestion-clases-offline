@@ -2,10 +2,10 @@ package com.fedegst90.gestionclasesapp.core
 
 import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
 import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursosYEstudiantes
-import com.fedegst90.gestionclasesapp.data.database.entity.ColegioEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegiosEntity
 import com.fedegst90.gestionclasesapp.data.database.entity.CursoConEstudiantes
 import com.fedegst90.gestionclasesapp.data.database.entity.CursosEntity
-import com.fedegst90.gestionclasesapp.data.database.entity.EstudianteEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.EstudiantesEntity
 import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosModel
 import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
@@ -14,7 +14,7 @@ import com.fedegst90.gestionclasesapp.domine.model.CursoModel
 import com.fedegst90.gestionclasesapp.domine.model.EstudianteModel
 
 
-fun ColegioEntity.toModel(): ColegioModel {
+fun ColegiosEntity.toModel(): ColegioModel {
     return ColegioModel(
         id = this.id,
         nombre = this.nombre,
@@ -22,8 +22,8 @@ fun ColegioEntity.toModel(): ColegioModel {
     )
 }
 
-fun ColegioModel.toEntity(): ColegioEntity {
-    return ColegioEntity(
+fun ColegioModel.toEntity(): ColegiosEntity {
+    return ColegiosEntity(
         id = this.id,
         nombre = this.nombre,
         nro = this.nro,
@@ -31,7 +31,7 @@ fun ColegioModel.toEntity(): ColegioEntity {
 }
 
 
-fun EstudianteEntity.toModel(): EstudianteModel {
+fun EstudiantesEntity.toModel(): EstudianteModel {
     return EstudianteModel(
         id = this.id,
         apellido = this.apellido,
@@ -44,8 +44,8 @@ fun EstudianteEntity.toModel(): EstudianteModel {
     )
 }
 
-fun EstudianteModel.toEntity(): EstudianteEntity {
-    return EstudianteEntity(
+fun EstudianteModel.toEntity(): EstudiantesEntity {
+    return EstudiantesEntity(
         id = this.id,
         apellido = this.apellido,
         nombre = this.nombre,
@@ -63,7 +63,8 @@ fun CursosEntity.toModel(): CursoModel {
         id = this.id,
         year = this.year,
         division = this.division,
-        colegioId = this.colegioId
+        colegioId = this.colegioId,
+        materiaId = materiaId
     )
 }
 
@@ -72,7 +73,8 @@ fun CursoModel.toEntity(): CursosEntity {
         id = this.id,
         year = this.year,
         division = this.division,
-        colegioId = this.colegioId
+        colegioId = this.colegioId,
+        materiaId = materiaId
     )
 }
 

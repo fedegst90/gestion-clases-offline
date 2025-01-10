@@ -79,7 +79,6 @@ class ColegiosFragment : Fragment() {
             if (it.isEmpty()) {
                 adapterColegio.updateList(listOf())
                 makeViewsInvisible(binding.imgLeft, binding.imgRight)
-
             } else {
                 listColegioModel = it
                 makeViewsVisible(binding.imgLeft, binding.imgRight)
@@ -197,6 +196,7 @@ class ColegiosFragment : Fragment() {
                     )
                 )
                 dialog.dismiss()
+                viewModelColegios.getAllColegiosConCursosConEstudiantes()
                 setupIU()
             } else {
                 context?.showToast("Debe completar todos los campos")

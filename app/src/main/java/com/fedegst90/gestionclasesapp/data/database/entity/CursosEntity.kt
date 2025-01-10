@@ -10,5 +10,6 @@ data class CursosEntity(
     @ColumnInfo("id") val id: Int = 0,
     @ColumnInfo("año") val year: String,
     @ColumnInfo("division") val division: String,
-    @ColumnInfo("colegio_id") val colegioId: Int
+    @ColumnInfo("colegio_id") val colegioId: Int,
+    @ColumnInfo("materia_id") val materiaId: Int
 )

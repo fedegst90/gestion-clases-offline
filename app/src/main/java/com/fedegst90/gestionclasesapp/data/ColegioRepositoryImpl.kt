@@ -2,14 +2,14 @@ package com.fedegst90.gestionclasesapp.data
 
 import com.fedegst90.gestionclasesapp.data.database.dao.ColegioDao
 import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
-import com.fedegst90.gestionclasesapp.data.database.entity.ColegioEntity
+import com.fedegst90.gestionclasesapp.data.database.entity.ColegiosEntity
 import com.fedegst90.gestionclasesapp.domine.ColegioRepository
 import javax.inject.Inject
 
 class ColegioRepositoryImpl @Inject constructor(private val colegioDao: ColegioDao) :
     ColegioRepository {
 
-    override suspend fun insertColegio(colegio: ColegioEntity) {
+    override suspend fun insertColegio(colegio: ColegiosEntity) {
         val existe = colegioDao.existeColegioConCodigo(colegio.nro) > 0
         if (existe) {
             throw Exception("Ya existe un colegio con el número de código ${colegio.nro}")
@@ -18,23 +18,23 @@ class ColegioRepositoryImpl @Inject constructor(private val colegioDao: ColegioD
         }
     }
 
-    override suspend fun updateColegio(colegio: ColegioEntity) {
+    override suspend fun updateColegio(colegio: ColegiosEntity) {
         colegioDao.updateColegio(colegio)
     }
 
-    override suspend fun deleteColegio(colegio: ColegioEntity) {
+    override suspend fun deleteColegio(colegio: ColegiosEntity) {
         colegioDao.deleteColegio(colegio)
     }
 
-    override suspend fun getAllColegios(): List<ColegioEntity> {
+    override suspend fun getAllColegios(): List<ColegiosEntity> {
         return colegioDao.getAllColegios()
     }
 
-    override suspend fun getColegioById(colegioId: Int): ColegioEntity? {
+    override suspend fun getColegioById(colegioId: Int): ColegiosEntity? {
         return colegioDao.getColegioById(colegioId)
     }
 
-    override suspend fun getColegioByName(nombre: String): ColegioEntity? {
+    override suspend fun getColegioByName(nombre: String): ColegiosEntity? {
         return colegioDao.getColegioByName(nombre)
     }
 
