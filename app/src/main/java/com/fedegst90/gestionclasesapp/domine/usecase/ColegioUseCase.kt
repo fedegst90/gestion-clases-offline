@@ -12,8 +12,8 @@ import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 import javax.inject.Inject
 
 class InsertColegioUseCase @Inject constructor(private val colegioRepository: ColegioRepository) {
-    suspend operator fun invoke(colegio: ColegioModel) {
-        colegioRepository.insertColegio(colegio.toEntity())
+    suspend operator fun invoke(colegio: ColegioModel): Result<String> {
+        return colegioRepository.insertColegio(colegio.toEntity())
     }
 }
 

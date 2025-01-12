@@ -50,12 +50,19 @@ class CursosViewModel @Inject constructor(
         }
     }
 
+    private val _insertCursoResult = MutableLiveData<Result<String>>()
+    val insertCursoResult get() = _insertCursoResult
 
     // Insertar curso
     fun insertCurso(curso: CursoModel) {
         viewModelScope.launch {
             withContext(dispatcherIO) {
-                insertCursoUseCase(curso)
+                try {
+                    insertCursoUseCase(curso)
+                    _insertCursoResult.postValue(Result.success("Curso agegado correctamente"))
+                } catch (e: Exception) {
+                    _insertCursoResult.postValue(Result.failure(e))
+                }
             }
         }
     }

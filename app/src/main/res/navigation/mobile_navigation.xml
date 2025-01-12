@@ -9,39 +9,33 @@
         android:id="@+id/navigation_colegios"
         android:name="com.fedegst90.gestionclasesapp.ui.colegios.ColegiosFragment"
         android:label="@string/title_colegios"
-        tools:layout="@layout/fragment_colegios" >
+        tools:layout="@layout/fragment_colegios">
 
         <action
             android:id="@+id/action_navigation_colegios_to_navigation_cursos"
-            app:destination="@id/navigation_cursos" />
-        <action
-            android:id="@+id/action_navigation_colegios_to_navigation_estudiantes"
-            app:destination="@id/navigation_estudiantes" />
+            app:destination="@id/navigation_cursos">
+            <argument
+                android:name="colegio"
+                app:argType="string"
+                android:defaultValue="&quot;colegio&quot;" />
+        </action>
+
+        <argument
+            android:name="colegio"
+            app:argType="string"
+            android:defaultValue="&quot;colegio&quot;" />
+
     </fragment>
 
     <fragment
         android:id="@+id/navigation_cursos"
         android:name="com.fedegst90.gestionclasesapp.ui.cursos.CursosFragment"
         android:label="@string/title_cursos"
-        tools:layout="@layout/fragment_cursos" >
-        <action
-            android:id="@+id/action_navigation_cursos_to_navigation_estudiantes"
-            app:destination="@id/navigation_estudiantes" />
-        <action
-            android:id="@+id/action_navigation_cursos_to_navigation_colegios"
-            app:destination="@id/navigation_colegios" />
-    </fragment>
+        tools:layout="@layout/fragment_cursos" />
 
     <fragment
         android:id="@+id/navigation_estudiantes"
         android:name="com.fedegst90.gestionclasesapp.ui.estudiantes.EstudiantesFragment"
         android:label="@string/title_estudiantes"
-        tools:layout="@layout/fragment_estudiantes" >
-        <action
-            android:id="@+id/action_navigation_estudiantes_to_navigation_colegios"
-            app:destination="@id/navigation_colegios" />
-        <action
-            android:id="@+id/action_navigation_estudiantes_to_navigation_cursos"
-            app:destination="@id/navigation_cursos" />
-    </fragment>
+        tools:layout="@layout/fragment_estudiantes" />
 </navigation>

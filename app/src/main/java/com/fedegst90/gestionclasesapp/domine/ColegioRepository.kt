@@ -5,7 +5,7 @@ import com.fedegst90.gestionclasesapp.data.database.entity.ColegiosEntity
 
 interface ColegioRepository {
 
-    suspend fun insertColegio(colegio: ColegiosEntity)
+    suspend fun insertColegio(colegio: ColegiosEntity): Result<String>
 
     suspend fun updateColegio(colegio: ColegiosEntity)
 

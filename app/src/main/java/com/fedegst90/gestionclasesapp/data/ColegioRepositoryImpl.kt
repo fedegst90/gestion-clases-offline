@@ -9,12 +9,17 @@ import javax.inject.Inject
 class ColegioRepositoryImpl @Inject constructor(private val colegioDao: ColegioDao) :
     ColegioRepository {
 
-    override suspend fun insertColegio(colegio: ColegiosEntity) {
+    override suspend fun insertColegio(colegio: ColegiosEntity): Result<String> {
         val existe = colegioDao.existeColegioConCodigo(colegio.nro) > 0
         if (existe) {
-            throw Exception("Ya existe un colegio con el número de código ${colegio.nro}")
-        } else {
+            return Result.failure(Exception("Ya existe un colegio con el número de código ${colegio.nro}"))
+        }
+
+        return try {
             colegioDao.insertColegio(colegio)
+            Result.success("Colegio insertado correctamente")
+        } catch (e: Exception) {
+            Result.failure(Exception("Error al insertar el colegio: ${e.message}", e))
         }
     }
 

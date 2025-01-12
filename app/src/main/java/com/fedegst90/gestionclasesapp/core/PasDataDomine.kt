@@ -64,7 +64,8 @@ fun CursosEntity.toModel(): CursoModel {
         year = this.year,
         division = this.division,
         colegioId = this.colegioId,
-        materiaId = materiaId
+        materia = this.materia,
+        color = this.color
     )
 }
 
@@ -74,7 +75,8 @@ fun CursoModel.toEntity(): CursosEntity {
         year = this.year,
         division = this.division,
         colegioId = this.colegioId,
-        materiaId = materiaId
+        materia = materia,
+        color = color
     )
 }
 

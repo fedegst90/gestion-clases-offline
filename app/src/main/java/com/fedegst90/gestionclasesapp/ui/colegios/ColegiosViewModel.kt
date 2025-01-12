@@ -55,98 +55,98 @@ class ColegiosViewModel @Inject constructor(
 
     fun insertColegio(colegio: ColegioModel) {
         viewModelScope.launch {
-            try {
-                insertColegioUseCase(colegio)
-                _insertColegioResult.postValue(Result.success("Colegio agregado exitosamente"))
-            } catch (e: Exception) {
-                _insertColegioResult.postValue(Result.failure(e))
-            }
-        }
-    }
-
-
-    // LiveData para exponer los resultados
-    private val _colegios = MutableLiveData<List<ColegioModel>>()
-    val colegios: LiveData<List<ColegioModel>> get() = _colegios
-
-    private val _selectedColegio = MutableLiveData<ColegioModel?>()
-    val selectedColegio: LiveData<ColegioModel?> get() = _selectedColegio
-
-    private val _colegioConCursos = MutableLiveData<List<ColegioConCursos>>()
-    val colegioConCursos: LiveData<List<ColegioConCursos>> get() = _colegioConCursos
-
-    // Obtener colegio con cursos
-    fun getAllColegioConCursos() {
-        viewModelScope.launch {
             val result = withContext(dispatcherIO) {
-                getAllColegioConCursosUseCase()
+                insertColegioUseCase(colegio)
             }
-            _colegioConCursos.postValue(result)
+            _insertColegioResult.postValue(result)
+
         }
     }
-    /*
-        // Insertar colegio
-        fun insertColegio(colegio: ColegioModel) {
-            viewModelScope.launch {
-                withContext(Dispatchers.IO) {
-                    try {
-                        insertColegioUseCase(colegio)
-                    }catch (e:Exception){
 
-                    }
+
+
+// LiveData para exponer los resultados
+private val _colegios = MutableLiveData<List<ColegioModel>>()
+val colegios: LiveData<List<ColegioModel>> get() = _colegios
+
+private val _selectedColegio = MutableLiveData<ColegioModel?>()
+val selectedColegio: LiveData<ColegioModel?> get() = _selectedColegio
+
+private val _colegioConCursos = MutableLiveData<List<ColegioConCursos>>()
+val colegioConCursos: LiveData<List<ColegioConCursos>> get() = _colegioConCursos
+
+// Obtener colegio con cursos
+fun getAllColegioConCursos() {
+    viewModelScope.launch {
+        val result = withContext(dispatcherIO) {
+            getAllColegioConCursosUseCase()
+        }
+        _colegioConCursos.postValue(result)
+    }
+}
+/*
+    // Insertar colegio
+    fun insertColegio(colegio: ColegioModel) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    insertColegioUseCase(colegio)
+                }catch (e:Exception){
+
                 }
             }
         }
-
-     */
-
-    // Actualizar colegio
-    fun updateColegio(colegio: ColegioModel) {
-        viewModelScope.launch {
-            withContext(dispatcherIO) {
-                updateColegioUseCase(colegio)
-            }
-        }
     }
 
-    // Eliminar colegio
-    fun deleteColegio(colegio: ColegioModel) {
-        viewModelScope.launch {
-            withContext(dispatcherIO) {
-                deleteColegioUseCase(colegio)
-            }
+ */
+
+// Actualizar colegio
+fun updateColegio(colegio: ColegioModel) {
+    viewModelScope.launch {
+        withContext(dispatcherIO) {
+            updateColegioUseCase(colegio)
         }
     }
+}
 
-    // Obtener todos los colegios
-    fun getAllColegios() {
-        viewModelScope.launch {
-            val result = withContext(dispatcherIO) {
-                getAllColegiosUseCase()
-            }
-            _colegios.postValue(result)
+// Eliminar colegio
+fun deleteColegio(colegio: ColegioModel) {
+    viewModelScope.launch {
+        withContext(dispatcherIO) {
+            deleteColegioUseCase(colegio)
         }
     }
+}
 
-    // Obtener colegio por ID
-    fun getColegioById(colegioId: Int) {
-        viewModelScope.launch {
-            val result = withContext(dispatcherIO) {
-                getColegioByIdUseCase(colegioId)
-            }
-            _selectedColegio.postValue(result)
-
+// Obtener todos los colegios
+fun getAllColegios() {
+    viewModelScope.launch {
+        val result = withContext(dispatcherIO) {
+            getAllColegiosUseCase()
         }
+        _colegios.postValue(result)
     }
+}
 
-    // Obtener colegio por nombre
-    fun getColegioByName(nombre: String) {
-        viewModelScope.launch {
-            val result = withContext(dispatcherIO) {
-                getColegioByNameUseCase(nombre)
-            }
-            _selectedColegio.postValue(result)
+// Obtener colegio por ID
+fun getColegioById(colegioId: Int) {
+    viewModelScope.launch {
+        val result = withContext(dispatcherIO) {
+            getColegioByIdUseCase(colegioId)
         }
+        _selectedColegio.postValue(result)
+
     }
+}
+
+// Obtener colegio por nombre
+fun getColegioByName(nombre: String) {
+    viewModelScope.launch {
+        val result = withContext(dispatcherIO) {
+            getColegioByNameUseCase(nombre)
+        }
+        _selectedColegio.postValue(result)
+    }
+}
 }
 

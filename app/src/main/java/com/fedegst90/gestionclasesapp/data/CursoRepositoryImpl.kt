@@ -11,7 +11,11 @@ class CursoRepositoryImpl @Inject constructor(
 ) : CursoRepository {
 
     override suspend fun insert(curso: CursosEntity) {
+        try {
         cursosDao.insert(curso)
+        }catch (e:Exception){
+           throw Exception("Error al guardar curso: ${e.message}" ,e)
+        }
     }
 
     override suspend fun getAllCursos(): List<CursosEntity> {

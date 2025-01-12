@@ -25,6 +25,7 @@ import com.fedegst90.gestionclasesapp.databinding.FragmentColegiosBinding
 import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 import com.fedegst90.gestionclasesapp.ui.colegios.adapter.ColegiosAdapter
+import com.fedegst90.gestionclasesapp.ui.cursos.CursosFragment
 import com.fedegst90.gestionclasesapp.ui.cursos.CursosViewModel
 import com.fedegst90.gestionclasesapp.ui.estudiantes.EstudiantesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -96,12 +97,11 @@ class ColegiosFragment : Fragment() {
         }
 
         viewModelColegios.insertColegioResult.observe(viewLifecycleOwner) { result ->
-            result.onSuccess {
-                requireContext().showToast(it)
+            result.onSuccess { msg ->
+                requireContext().showToast(msg)
                 setupIU()
-            }
-            result.onFailure {
-                requireContext().showToast(it.message ?: "Error al agregar Colegio")
+            }.onFailure { error ->
+                requireContext().showToast(error.message.toString())
             }
 
         }
@@ -174,7 +174,7 @@ class ColegiosFragment : Fragment() {
     private fun filterItems(query: String): List<ColegioConCursosYEstudiantesModel> =
         listColegioModel.filter { it.colegio.nombre.contains(query, ignoreCase = true) }
 
-    @SuppressLint("MissingInflatedId")
+
     private fun dialogNewColegio() {
         val dialogView =
             LayoutInflater.from(requireContext()).inflate(R.layout.dialog_create, null)
@@ -185,10 +185,10 @@ class ColegiosFragment : Fragment() {
 
         dialog.setCanceledOnTouchOutside(false)
 
-        val tvTitle = dialogView.findViewById<TextView>(R.id.dialogTitle)
+        val tvTitle = dialogView.findViewById<TextView>(R.id.tvTitle)
         tvTitle.setText("Nuevo Colegio")
-        val etName = dialogView.findViewById<EditText>(R.id.etNombreColegio)
-        val etNro = dialogView.findViewById<EditText>(R.id.etNro)
+        val etName = dialogView.findViewById<EditText>(R.id.etPrimero)
+        val etNro = dialogView.findViewById<EditText>(R.id.etSegundo)
         val btnConfirmar = dialogView.findViewById<Button>(R.id.btnConfirmar)
 
         btnConfirmar.setOnClickListener {
@@ -208,10 +208,16 @@ class ColegiosFragment : Fragment() {
     }
 
     private fun onEstudianteSelected(cursoId: Int) {
-        findNavController().navigate(R.id.action_navigation_colegios_to_navigation_estudiantes)
+        //       findNavController().navigate(R.id.action_navigation_colegios_to_navigation_estudiantes)
     }
 
     private fun onCursoSelected(colegioId: Int) {
-        findNavController().navigate(R.id.action_navigation_colegios_to_navigation_cursos)
+        val remplaceFragment = CursosFragment().apply {
+            arguments = Bundle().apply {
+                putInt("colegio", colegioId)
+            }
+        }
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment_activity_main, remplaceFragment).commit()
     }
 }

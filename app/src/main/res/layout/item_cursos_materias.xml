@@ -7,35 +7,28 @@
     android:padding="8dp"> <!-- Fondo azul como base -->
 
     <TextView
-        android:id="@+id/tvCursos"
+        android:id="@+id/tvMateria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Curso"
+        android:text="Materia"
         android:layout_marginBottom="3dp"/>
 
     <FrameLayout
         android:layout_width="25dp"
         android:layout_height="25dp">
-
-        <View
-            android:id="@+id/circleSurface"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/circle_surface" />
-
         <View
             android:id="@+id/circuleCetral"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center"
-            android:background="@drawable/circle_curso" />
+            android:background="@drawable/circle_center" />
     </FrameLayout>
 
     <TextView
-        android:id="@+id/tvMateria"
+        android:id="@+id/tvCursos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
-        android:text="Materia" />
+        android:text="Curso" />
 
 </LinearLayout>
