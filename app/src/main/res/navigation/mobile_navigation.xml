@@ -14,16 +14,18 @@
         <action
             android:id="@+id/action_navigation_colegios_to_navigation_cursos"
             app:destination="@id/navigation_cursos">
+
             <argument
                 android:name="colegio"
-                app:argType="string"
-                android:defaultValue="&quot;colegio&quot;" />
+                android:defaultValue="0"
+                app:argType="integer" />
         </action>
 
-        <argument
-            android:name="colegio"
-            app:argType="string"
-            android:defaultValue="&quot;colegio&quot;" />
+
+
+        <action
+            android:id="@+id/action_navigation_colegios_to_navigation_estudiantes"
+            app:destination="@id/navigation_estudiantes" />
 
     </fragment>
 
@@ -31,7 +33,14 @@
         android:id="@+id/navigation_cursos"
         android:name="com.fedegst90.gestionclasesapp.ui.cursos.CursosFragment"
         android:label="@string/title_cursos"
-        tools:layout="@layout/fragment_cursos" />
+        tools:layout="@layout/fragment_cursos" >
+
+        <argument
+            android:name="colegio"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_estudiantes"

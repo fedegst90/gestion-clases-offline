@@ -4,11 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursos
-import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursosYEstudiantes
 import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
-import com.fedegst90.gestionclasesapp.domine.usecase.DeleteColegioUseCase
+import com.fedegst90.gestionclasesapp.domine.usecase.DeleteColegioConCursosConEstudiantesUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetAllColegioConCursosUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetAllColegiosConCursosConEstudiantesUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetAllColegiosUseCase
@@ -26,7 +24,7 @@ import javax.inject.Inject
 class ColegiosViewModel @Inject constructor(
     private val insertColegioUseCase: InsertColegioUseCase,
     private val updateColegioUseCase: UpdateColegioUseCase,
-    private val deleteColegioUseCase: DeleteColegioUseCase,
+    private val deleteColegioConCursosConEstudiantesUseCase: DeleteColegioConCursosConEstudiantesUseCase,
     private val getAllColegiosUseCase: GetAllColegiosUseCase,
     private val getColegioByIdUseCase: GetColegioByIdUseCase,
     private val getColegioByNameUseCase: GetColegioByNameUseCase,
@@ -63,8 +61,20 @@ class ColegiosViewModel @Inject constructor(
         }
     }
 
+    // Eliminar colegio
+    fun deleteColegioConCursosConEstudiantes(colegioInt: Int) {
+        viewModelScope.launch {
+            withContext(dispatcherIO) {
+                deleteColegioConCursosConEstudiantesUseCase(colegioInt)
+            }
+        }
+    }
 
 
+}
+
+
+/*
 // LiveData para exponer los resultados
 private val _colegios = MutableLiveData<List<ColegioModel>>()
 val colegios: LiveData<List<ColegioModel>> get() = _colegios
@@ -109,14 +119,7 @@ fun updateColegio(colegio: ColegioModel) {
     }
 }
 
-// Eliminar colegio
-fun deleteColegio(colegio: ColegioModel) {
-    viewModelScope.launch {
-        withContext(dispatcherIO) {
-            deleteColegioUseCase(colegio)
-        }
-    }
-}
+
 
 // Obtener todos los colegios
 fun getAllColegios() {
@@ -150,3 +153,4 @@ fun getColegioByName(nombre: String) {
 }
 }
 
+*/

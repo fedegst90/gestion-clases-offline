@@ -12,7 +12,8 @@ data class CursoConEstudiantesModel(
 
 data class ColegioConCursosYEstudiantesModel(
     val colegio: ColegioModel,
-    val cursos: List<CursoConEstudiantesModel>
+    val cursos: List<CursoConEstudiantesModel>,
+    var isSelected: Boolean = false
 )
 
 

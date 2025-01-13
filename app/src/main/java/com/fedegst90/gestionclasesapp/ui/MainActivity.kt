@@ -37,8 +37,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_estudiantes -> {
                     if (navController.currentDestination?.id != R.id.navigation_estudiantes) {
                         navController.navigate(
-                            R.id.navigation_estudiantes,
-                            null,
+                            R.id.navigation_estudiantes, null,
                             optionNavegation()
                         )
                     }
@@ -47,14 +46,14 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.navigation_colegios -> {
                     if (navController.currentDestination?.id != R.id.navigation_colegios) {
-                        navController.navigate(R.id.navigation_colegios, null, optionNavegation())
+                        navController.navigate(R.id.navigation_colegios, null,optionNavegation())
                     }
                     true
                 }
 
                 R.id.navigation_cursos -> {
                     if (navController.currentDestination?.id != R.id.navigation_cursos) {
-                        navController.navigate(R.id.navigation_cursos, null, optionNavegation())
+                        navController.navigate(R.id.navigation_cursos, null,optionNavegation())
                     }
                     true
                 }

@@ -30,8 +30,8 @@ class CursoRepositoryImpl @Inject constructor(
         cursosDao.update(curso)
     }
 
-    override suspend fun delete(curso: CursosEntity) {
-        cursosDao.delete(curso)
+    override suspend fun deleteCursosByColegioId(cursoId: Int) {
+        cursosDao.deleteCursosByColegio(cursoId)
     }
 
     override suspend fun deleteAllCursos() {

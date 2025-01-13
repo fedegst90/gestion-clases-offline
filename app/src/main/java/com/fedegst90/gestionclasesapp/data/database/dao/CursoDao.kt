@@ -21,6 +21,12 @@ interface CursoDao {
     @Query("SELECT * FROM cursos_table")
     fun getAllCursos(): List<CursosEntity>
 
+    @Query("DELETE FROM cursos_table WHERE colegio_id = :colegioId")
+    suspend fun deleteCursosByColegio(colegioId: Int)
+
+
+
+
     // Obtener un curso por ID
     @Query("SELECT * FROM cursos_table WHERE id = :cursoId")
     suspend fun getCursoById(cursoId: Int): CursosEntity?

@@ -18,11 +18,6 @@ class UpdateEstudianteUseCase @Inject constructor(private val estudianteReposito
     }
 }
 
-class DeleteEstudianteUseCase @Inject constructor(private val estudianteRepository: EstudianteRepository) {
-    suspend operator fun invoke(estudiante: EstudianteModel) {
-        estudianteRepository.deleteStudent(estudiante.toEntity())
-    }
-}
 
 class GetAllEstudiantesUseCase @Inject constructor(private val estudianteRepository: EstudianteRepository) {
     suspend operator fun invoke(): List<EstudianteModel> {

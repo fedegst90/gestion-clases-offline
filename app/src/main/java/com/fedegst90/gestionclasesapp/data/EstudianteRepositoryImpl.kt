@@ -18,8 +18,8 @@ class EstudianteRepositoryImpl @Inject constructor(
         estudianteDao.updateStudent(student)
     }
 
-    override suspend fun deleteStudent(student: EstudiantesEntity) {
-        estudianteDao.deleteStudent(student)
+    override suspend fun deleteStudentByColegio(colegioId: Int) {
+        estudianteDao.deleteStudentByColegio(colegioId)
     }
 
     override suspend fun getAllStudents(): List<EstudiantesEntity> {

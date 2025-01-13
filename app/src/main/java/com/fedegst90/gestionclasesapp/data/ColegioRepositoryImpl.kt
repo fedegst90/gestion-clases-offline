@@ -27,8 +27,8 @@ class ColegioRepositoryImpl @Inject constructor(private val colegioDao: ColegioD
         colegioDao.updateColegio(colegio)
     }
 
-    override suspend fun deleteColegio(colegio: ColegiosEntity) {
-        colegioDao.deleteColegio(colegio)
+    override suspend fun deleteColegio(colegioId: Int) {
+        colegioDao.deleteColegioById(colegioId)
     }
 
     override suspend fun getAllColegios(): List<ColegiosEntity> {

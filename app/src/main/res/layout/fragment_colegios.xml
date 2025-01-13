@@ -36,7 +36,36 @@
         app:layout_constraintTop_toBottomOf="@id/tvColegioTitle"
         app:queryBackground="@color/white" />
 
-    <!-- Image to the left of the RecyclerView -->
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchView">
+
+        <include
+            android:id="@+id/includeItemColegio"
+            layout="@layout/item_colegio"/>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnAddColegio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:backgroundTint="@color/segundo"
+        android:text="@string/btn_agregar_colegio"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view" />
+
+
     <ImageView
         android:id="@+id/imgLeft"
         android:layout_width="35dp"
@@ -57,7 +86,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchView" />
+        app:layout_constraintTop_toBottomOf="@id/btnAddColegio" />
 
     <!-- Image to the right of the RecyclerView -->
     <ImageView
@@ -71,32 +100,6 @@
         app:layout_constraintStart_toEndOf="@id/rvColegios"
         app:layout_constraintTop_toTopOf="@id/rvColegios" />
 
-    <Button
-        android:id="@+id/btnAddColegio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:backgroundTint="@color/segundo"
-        android:text="@string/btn_agregar_colegio"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvColegios" />
 
-    <LinearLayout
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnAddColegio">
-
-        <include
-            android:id="@+id/includeItemColegio"
-            layout="@layout/item_colegio" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

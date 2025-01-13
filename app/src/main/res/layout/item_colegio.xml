@@ -9,6 +9,7 @@
     app:cardElevation="6dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -130,5 +131,17 @@
             app:layout_constraintTop_toTopOf="@+id/imgEstudiantes" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imgDelete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/ic_delete"
+            app:tint="@color/segundo"
+            android:layout_gravity="end"/>
+    </FrameLayout>
 
 </androidx.cardview.widget.CardView>

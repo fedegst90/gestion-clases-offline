@@ -1,7 +1,6 @@
 package com.fedegst90.gestionclasesapp.ui.colegios
 
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +17,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fedegst90.gestionclasesapp.R
+import com.fedegst90.gestionclasesapp.core.makeGone
 import com.fedegst90.gestionclasesapp.core.makeViewsInvisible
 import com.fedegst90.gestionclasesapp.core.makeViewsVisible
 import com.fedegst90.gestionclasesapp.core.showToast
@@ -25,7 +25,6 @@ import com.fedegst90.gestionclasesapp.databinding.FragmentColegiosBinding
 import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 import com.fedegst90.gestionclasesapp.ui.colegios.adapter.ColegiosAdapter
-import com.fedegst90.gestionclasesapp.ui.cursos.CursosFragment
 import com.fedegst90.gestionclasesapp.ui.cursos.CursosViewModel
 import com.fedegst90.gestionclasesapp.ui.estudiantes.EstudiantesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -70,6 +69,7 @@ class ColegiosFragment : Fragment() {
     }
 
     private fun setupIU() {
+        binding.includeItemColegio.imgDelete.makeGone()
         viewModelColegios.getAllColegiosConCursosConEstudiantes()
         viewModelEstudiantes.getAllEstudiantes()
         viewModelCursos.getAllCursos()
@@ -78,7 +78,7 @@ class ColegiosFragment : Fragment() {
     private fun setupObserver() {
         viewModelColegios.colegioConCursosConEstudiantes.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
-                adapterColegio.updateList(listOf())
+                adapterColegio.updateList(it)
                 makeViewsInvisible(binding.imgLeft, binding.imgRight)
             } else {
                 listColegioModel = it
@@ -114,12 +114,15 @@ class ColegiosFragment : Fragment() {
         }
     }
 
+
     private fun setupRecyclerView() {
         adapterColegio = ColegiosAdapter(
             colegiosList = listColegioModel,
             onCursoSelected = { colegioId -> onCursoSelected(colegioId) },
-            onEstudianteSelected = { cursoId -> onEstudianteSelected(cursoId) }
+            onEstudianteSelected = { cursoId -> onEstudianteSelected(cursoId) },
+            onItemDelete = { colegioId -> onItemDelete(colegioId) }
         )
+
         binding.rvColegios.apply {
             setHasFixedSize(true)
             layoutManager =
@@ -208,16 +211,18 @@ class ColegiosFragment : Fragment() {
     }
 
     private fun onEstudianteSelected(cursoId: Int) {
-        //       findNavController().navigate(R.id.action_navigation_colegios_to_navigation_estudiantes)
+        findNavController().navigate(R.id.action_navigation_colegios_to_navigation_estudiantes)
     }
 
     private fun onCursoSelected(colegioId: Int) {
-        val remplaceFragment = CursosFragment().apply {
-            arguments = Bundle().apply {
-                putInt("colegio", colegioId)
-            }
-        }
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment_activity_main, remplaceFragment).commit()
+        val action =
+            ColegiosFragmentDirections.actionNavigationColegiosToNavigationCursos(colegioId)
+
+        findNavController().navigate(action)
+    }
+
+    private fun onItemDelete(colegioId: Int) {
+        viewModelColegios.deleteColegioConCursosConEstudiantes(colegioId)
+        setupIU()
     }
 }

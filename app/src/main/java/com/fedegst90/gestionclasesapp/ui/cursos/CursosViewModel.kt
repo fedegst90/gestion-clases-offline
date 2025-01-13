@@ -75,7 +75,7 @@ class CursosViewModel @Inject constructor(
             }
         }
     }
-
+/*
     // Eliminar curso
     fun deleteCurso(curso: CursoModel) {
         viewModelScope.launch {
@@ -84,7 +84,7 @@ class CursosViewModel @Inject constructor(
             }
         }
     }
-
+*/
     // Obtener todos los cursos
     fun getAllCursos() {
         viewModelScope.launch {

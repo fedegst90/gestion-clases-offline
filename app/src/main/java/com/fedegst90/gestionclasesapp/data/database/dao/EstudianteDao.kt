@@ -19,6 +19,12 @@ interface EstudianteDao {
     @Update
     suspend fun updateStudent(student: EstudiantesEntity)
 
+
+
+    @Query("DELETE FROM estudiante_table WHERE colegio_id = :colegioId")
+    suspend fun deleteStudentByColegio(colegioId: Int)
+
+
     // Eliminar un estudiante
     @Delete
     suspend fun deleteStudent(student: EstudiantesEntity)

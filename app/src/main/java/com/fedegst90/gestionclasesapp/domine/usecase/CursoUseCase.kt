@@ -24,8 +24,8 @@ class UpdateCursoUseCase @Inject constructor(private val cursosRepository: Curso
 
 // Caso de uso para eliminar un curso
 class DeleteCursoUseCase @Inject constructor(private val cursosRepository: CursoRepository) {
-    suspend operator fun invoke(curso: CursoModel) {
-        cursosRepository.delete(curso.toEntity())
+    suspend operator fun invoke(cursoId: Int) {
+        cursosRepository.deleteCursosByColegioId(cursoId)
     }
 }
 

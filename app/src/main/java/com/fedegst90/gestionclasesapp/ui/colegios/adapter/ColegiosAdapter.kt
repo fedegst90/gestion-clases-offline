@@ -11,7 +11,8 @@ import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesM
 class ColegiosAdapter(
     private var colegiosList: List<ColegioConCursosYEstudiantesModel>,
     private val onCursoSelected: (Int) -> Unit,
-    private val onEstudianteSelected: (Int) -> Unit
+    private val onEstudianteSelected: (Int) -> Unit,
+    private val  onItemDelete: (Int) -> Unit
 ) : RecyclerView.Adapter<ColegiosViewHolder>() {
 
     fun updateList(newList: List<ColegioConCursosYEstudiantesModel>) {
@@ -36,6 +37,6 @@ class ColegiosAdapter(
 
     override fun onBindViewHolder(holder: ColegiosViewHolder, position: Int) {
         val item = colegiosList[position]
-        holder.parse(item, onCursoSelected, onEstudianteSelected)
+        holder.parse(item, onCursoSelected, onEstudianteSelected, onItemDelete)
     }
 }

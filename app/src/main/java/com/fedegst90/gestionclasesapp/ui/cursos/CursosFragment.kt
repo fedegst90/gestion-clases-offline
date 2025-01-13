@@ -16,7 +16,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fedegst90.gestionclasesapp.R
 import com.fedegst90.gestionclasesapp.core.esconderTeclado
@@ -25,8 +24,8 @@ import com.fedegst90.gestionclasesapp.core.makeVisible
 import com.fedegst90.gestionclasesapp.core.showToast
 import com.fedegst90.gestionclasesapp.databinding.DialogCreateBinding
 import com.fedegst90.gestionclasesapp.databinding.FragmentCursosBinding
+import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
 import com.fedegst90.gestionclasesapp.domine.model.CursoModel
-import com.fedegst90.gestionclasesapp.ui.colegios.ColegiosFragmentArgs
 import com.fedegst90.gestionclasesapp.ui.colegios.ColegiosViewModel
 import com.fedegst90.gestionclasesapp.ui.cursos.adapter.cursoscolegios.CursosColegiosAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,8 +38,8 @@ class CursosFragment : Fragment() {
     private val viewmodelColegios: ColegiosViewModel by viewModels()
     private val viewmodelCursos: CursosViewModel by activityViewModels()
     private lateinit var cursosColegiosAdapter: CursosColegiosAdapter
-
-    var colegioidd = 0
+    private var colegio = 0
+    private var listColegio = emptyList<ColegioConCursosYEstudiantesModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,18 +54,13 @@ class CursosFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        colegio = 0
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        colegio = CursosFragmentArgs.fromBundle(requireArguments()).colegio
 
-        arguments?.let {
-            colegioidd = it.getInt("colegio", 0)
-        }
-
-        if (colegioidd!=0){
-            binding.tvCursoTitle.text = "este es el colegio seleccionado ${colegioidd}"
-        }
 
         setupListener()
         setupObserver()
@@ -76,14 +70,19 @@ class CursosFragment : Fragment() {
 
     private fun setupIU() {
 
-            viewmodelColegios.getAllColegiosConCursosConEstudiantes()
+        viewmodelColegios.getAllColegiosConCursosConEstudiantes()
 
 
     }
 
     private fun setupObserver() {
         viewmodelColegios.colegioConCursosConEstudiantes.observe(viewLifecycleOwner) {
-            cursosColegiosAdapter.updateList(it)
+            if (colegio != 0) {
+                val lis = it.filter { list -> list.colegio.id == colegio }
+                cursosColegiosAdapter.updateList(lis)
+            } else {
+                cursosColegiosAdapter.updateList(it)
+            }
         }
 
         viewmodelCursos.insertCursoResult.observe(viewLifecycleOwner) {
@@ -162,7 +161,7 @@ class CursosFragment : Fragment() {
     private fun createDialog(dialogBinding: DialogCreateBinding): AlertDialog {
         return AlertDialog.Builder(requireContext())
             .setView(dialogBinding.root)
-            .setCancelable(false) // Disable dialog cancel when tapping outside
+            .setCancelable(true) // Disable dialog cancel when tapping outside
             .create()
     }
 
@@ -241,7 +240,7 @@ class CursosFragment : Fragment() {
 
     private fun EditText.setFocusChangeListener(gridLayout: GridLayout) =
         setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) gridLayout.makeVisible()
+            if (!hasFocus) gridLayout.makeVisible()
             else gridLayout.makeGone()
         }
 

@@ -20,14 +20,22 @@ interface ColegioDao {
     @Query("SELECT COUNT(*) FROM colegio_table WHERE nro = :nro")
     suspend fun existeColegioConCodigo(nro: Int): Int
 
+    // Eliminar un colegio por su id
+    @Query("DELETE FROM colegio_table WHERE id = :colegioId")
+    suspend fun deleteColegioById(colegioId: Int)
+
+    @Transaction
+    @Query("SELECT * FROM colegio_table")
+    suspend fun getAllColegioConCursos(): List<ColegioConCursos>
+
+
+
+
+
 
     // Actualizar un colegio
     @Update
     suspend fun updateColegio(colegio: ColegiosEntity)
-
-    // Eliminar un colegio
-    @Delete
-    suspend fun deleteColegio(colegio: ColegiosEntity)
 
     // Obtener todos los colegios
     @Query("SELECT * FROM colegio_table")
@@ -41,8 +49,6 @@ interface ColegioDao {
     @Query("SELECT * FROM colegio_table WHERE nombre = :nombre")
     suspend fun getColegioByName(nombre: String): ColegiosEntity?
 
-    @Transaction
-    @Query("SELECT * FROM colegio_table")
-    suspend fun getAllColegioConCursos(): List<ColegioConCursos>
+
 
 }

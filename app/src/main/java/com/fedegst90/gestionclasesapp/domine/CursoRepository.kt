@@ -13,7 +13,7 @@ interface CursoRepository {
 
     suspend fun update(curso: CursosEntity)
 
-    suspend fun delete(curso: CursosEntity)
+    suspend fun deleteCursosByColegioId(colegioId :Int)
 
     suspend fun deleteAllCursos()
 

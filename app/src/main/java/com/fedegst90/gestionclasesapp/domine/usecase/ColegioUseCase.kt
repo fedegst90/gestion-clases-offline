@@ -7,6 +7,7 @@ import com.fedegst90.gestionclasesapp.data.database.entity.ColegioConCursosYEstu
 import com.fedegst90.gestionclasesapp.data.database.entity.CursoConEstudiantes
 import com.fedegst90.gestionclasesapp.domine.ColegioRepository
 import com.fedegst90.gestionclasesapp.domine.CursoRepository
+import com.fedegst90.gestionclasesapp.domine.EstudianteRepository
 import com.fedegst90.gestionclasesapp.domine.model.ColegioConCursosYEstudiantesModel
 import com.fedegst90.gestionclasesapp.domine.model.ColegioModel
 import javax.inject.Inject
@@ -23,9 +24,15 @@ class UpdateColegioUseCase @Inject constructor(private val colegioRepository: Co
     }
 }
 
-class DeleteColegioUseCase @Inject constructor(private val colegioRepository: ColegioRepository) {
-    suspend operator fun invoke(colegio: ColegioModel) {
-        colegioRepository.deleteColegio(colegio.toEntity())
+class DeleteColegioConCursosConEstudiantesUseCase @Inject constructor(
+    private val colegioRepository: ColegioRepository,
+    private val cursoRepository: CursoRepository,
+    private val estudianteRepository: EstudianteRepository
+) {
+    suspend operator fun invoke(colegioId: Int) {
+        colegioRepository.deleteColegio(colegioId)
+        cursoRepository.deleteCursosByColegioId(colegioId)
+        estudianteRepository.deleteStudentByColegio(colegioId)
     }
 }
 

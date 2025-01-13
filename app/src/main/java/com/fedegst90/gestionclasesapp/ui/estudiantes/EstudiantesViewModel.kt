@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fedegst90.gestionclasesapp.domine.model.EstudianteModel
-import com.fedegst90.gestionclasesapp.domine.usecase.DeleteEstudianteUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetAllEstudiantesUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetEstudianteByIdUseCase
 import com.fedegst90.gestionclasesapp.domine.usecase.GetEstudiantesByColegioUseCase
@@ -23,7 +22,6 @@ import javax.inject.Inject
 class EstudiantesViewModel @Inject constructor(
     private val insertEstudianteUseCase: InsertEstudianteUseCase,
     private val updateEstudianteUseCase: UpdateEstudianteUseCase,
-    private val deleteEstudianteUseCase: DeleteEstudianteUseCase,
     private val getAllEstudiantesUseCase: GetAllEstudiantesUseCase,
     private val getEstudianteByIdUseCase: GetEstudianteByIdUseCase,
     private val getEstudiantesByColegioUseCase: GetEstudiantesByColegioUseCase,
@@ -56,7 +54,7 @@ class EstudiantesViewModel @Inject constructor(
             }
         }
     }
-
+/*
     // Eliminar estudiante
     fun deleteEstudiante(estudiante: EstudianteModel) {
         viewModelScope.launch {
@@ -65,6 +63,8 @@ class EstudiantesViewModel @Inject constructor(
             }
         }
     }
+
+ */
 
     // Obtener todos los estudiantes
     fun getAllEstudiantes() {

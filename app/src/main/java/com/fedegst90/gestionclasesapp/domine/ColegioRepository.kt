@@ -9,7 +9,7 @@ interface ColegioRepository {
 
     suspend fun updateColegio(colegio: ColegiosEntity)
 
-    suspend fun deleteColegio(colegio: ColegiosEntity)
+    suspend fun deleteColegio(colegioId: Int)
 
     suspend fun getAllColegios(): List<ColegiosEntity>
 

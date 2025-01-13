@@ -8,7 +8,7 @@ interface EstudianteRepository {
 
     suspend fun updateStudent(student: EstudiantesEntity)
 
-    suspend fun deleteStudent(student: EstudiantesEntity)
+    suspend fun deleteStudentByColegio(colegioId: Int)
 
     suspend fun getAllStudents(): List<EstudiantesEntity>
 
